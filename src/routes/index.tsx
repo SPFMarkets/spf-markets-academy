@@ -29,13 +29,14 @@ export const Route = createFileRoute("/")({
 });
 
 function Academy() {
-  const [activeId, setActiveId] = useState(allLessons[0].id);
+  const [activeId, setActiveId] = useState(allLessons[0]!.id);
   const [completed, setCompleted] = useState<string[]>([]);
   const [collapsed, setCollapsed] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
-  const index = useMemo(() => allLessons.findIndex((l) => l.id === activeId), [activeId]);
-  const lesson = allLessons[index];
+  const found = useMemo(() => allLessons.findIndex((l) => l.id === activeId), [activeId]);
+  const index = found < 0 ? 0 : found;
+  const lesson = allLessons[index]!;
   const prev = allLessons[index - 1];
   const next = allLessons[index + 1];
 
@@ -125,15 +126,8 @@ function Academy() {
                     <p className="mt-2 text-[15px] leading-relaxed text-foreground">{block.text}</p>
                   </aside>
                 );
-              return (
-                <FormulaBlock
-                  key={i}
-                  label={block.label}
-                  expression={block.expression}
-                  worked={block.worked}
-                  terms={block.terms}
-                />
-              );
+              const { type: _type, ...formula } = block;
+              return <FormulaBlock key={i} {...formula} />;
             })}
           </div>
 
