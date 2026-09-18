@@ -89,7 +89,8 @@ export const curriculum: Module[] = [
             question: "In the pair GBP/JPY, which currency is the base?",
             options: ["JPY", "GBP", "Both", "Neither — crosses have no base"],
             answer: 1,
-            explanation: "The first currency listed is always the base currency.",
+            explanation:
+              "The first currency listed in a forex pair is always the base currency, while the second is the quote currency.",
           },
           {
             question: "Buying EUR/USD means you are:",
