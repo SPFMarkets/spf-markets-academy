@@ -24,7 +24,7 @@ export function Quiz({ lessonId, questions, onComplete }: Props) {
     setFinished(false);
   }, [lessonId]);
 
-  const question = questions[index];
+  const question = questions[index]!;
   const isCorrect = selected === question.answer;
 
   const check = () => {
