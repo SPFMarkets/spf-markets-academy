@@ -390,4 +390,4 @@ export const allLessons = curriculum.flatMap((m) =>
   m.lessons.map((l) => ({ ...l, moduleId: m.id, moduleTitle: m.title })),
 );
 
-export const DERIV_AFFILIATE_URL = "https://track.deriv.com/_spf-markets/1/";
+export const DERIV_AFFILIATE_URL = "https://t.deriv.link?t=YRL2VSHWS49A";

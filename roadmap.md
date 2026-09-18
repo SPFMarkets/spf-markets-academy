@@ -9,3 +9,4 @@
 - [x] Fix build/type errors blocking the preview
 - [ ] Replace placeholder lesson text with the user's real lessons (blocked: awaiting content)
 - [ ] Dashboard of quiz completions per lesson (needs Lovable Cloud + user confirmation)
+- [x] Real Deriv affiliate tracking link
