@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 type Props = {
   lessonId: string;
   questions: QuizQuestion[];
-  onComplete: (lessonId: string) => void;
+  onComplete: (lessonId: string, score: number, total: number) => void;
 };
 
 export function Quiz({ lessonId, questions, onComplete }: Props) {
@@ -40,7 +40,7 @@ export function Quiz({ lessonId, questions, onComplete }: Props) {
       setChecked(false);
     } else {
       setFinished(true);
-      onComplete(lessonId);
+      onComplete(lessonId, score, questions.length);
     }
   };
 

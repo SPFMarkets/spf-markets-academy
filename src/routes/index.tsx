@@ -1,12 +1,14 @@
-import { useMemo, useState } from "react";
-import { createFileRoute } from "@tanstack/react-router";
-import { Menu, Clock, ArrowLeft, ArrowRight } from "lucide-react";
+import { useEffect, useMemo, useState } from "react";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { BarChart3, Menu, Clock, ArrowLeft, ArrowRight, LogOut } from "lucide-react";
 import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { Sidebar } from "@/components/academy/Sidebar";
 import { FormulaBlock } from "@/components/academy/FormulaBlock";
 import { DerivCta } from "@/components/academy/DerivCta";
 import { Quiz } from "@/components/academy/Quiz";
 import { allLessons } from "@/data/curriculum";
+import { supabase } from "@/integrations/supabase/client";
+import { useSession } from "@/hooks/useSession";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -33,6 +35,21 @@ function Academy() {
   const [completed, setCompleted] = useState<string[]>([]);
   const [collapsed, setCollapsed] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const { loading: sessionLoading, user } = useSession();
+
+  useEffect(() => {
+    if (!user) {
+      setCompleted([]);
+      return;
+    }
+    void supabase
+      .from("quiz_completions")
+      .select("lesson_id")
+      .eq("user_id", user.id)
+      .then(({ data }) => {
+        if (data) setCompleted(data.map((row) => row.lesson_id));
+      });
+  }, [user]);
 
   const found = useMemo(() => allLessons.findIndex((l) => l.id === activeId), [activeId]);
   const index = found < 0 ? 0 : found;
@@ -46,8 +63,16 @@ function Academy() {
     if (typeof window !== "undefined") window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  const markComplete = (id: string) =>
+  const markComplete = (id: string, score: number, total: number) => {
     setCompleted((prevIds) => (prevIds.includes(id) ? prevIds : [...prevIds, id]));
+    if (!user) return;
+    void supabase
+      .from("quiz_completions")
+      .upsert(
+        { user_id: user.id, lesson_id: id, score, total },
+        { onConflict: "user_id,lesson_id" },
+      );
+  };
 
   const sidebarProps = {
     activeLessonId: activeId,
@@ -88,10 +113,37 @@ function Academy() {
             <span className="truncate text-foreground">Lesson {index + 1}</span>
           </div>
 
-          <span className="ml-auto flex shrink-0 items-center gap-1.5 rounded-full border border-border px-3 py-1 font-mono text-[11px] text-muted-foreground">
-            <Clock className="size-3" />
-            {lesson.minutes} min
-          </span>
+          <div className="ml-auto flex shrink-0 items-center gap-2">
+            <span className="flex items-center gap-1.5 rounded-full border border-border px-3 py-1 font-mono text-[11px] text-muted-foreground">
+              <Clock className="size-3" />
+              {lesson.minutes} min
+            </span>
+            {sessionLoading ? null : user ? (
+              <>
+                <Link
+                  to="/dashboard"
+                  aria-label="Lesson completion dashboard"
+                  className="rounded-full border border-border p-2 text-muted-foreground transition-colors hover:border-gold/50 hover:text-gold"
+                >
+                  <BarChart3 className="size-3.5" />
+                </Link>
+                <span className="hidden max-w-[160px] truncate rounded-full border border-border px-3 py-1 text-[12px] text-foreground sm:block">
+                  {user.email?.split("@")[0]}
+                </span>
+                <button
+                  onClick={() => void supabase.auth.signOut()}
+                  aria-label="Sign out"
+                  className="rounded-full border border-border p-2 text-muted-foreground transition-colors hover:border-destructive/50 hover:text-destructive"
+                >
+                  <LogOut className="size-3.5" />
+                </button>
+              </>
+            ) : (
+              <Link to="/auth" className="cta-gold rounded-full px-4 py-1.5 text-[12px] font-semibold">
+                Sign in
+              </Link>
+            )}
+          </div>
         </header>
 
         <article className="mx-auto max-w-[72ch] px-6 py-12 sm:px-10 lg:px-12 lg:py-16">
