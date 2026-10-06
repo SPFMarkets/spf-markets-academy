@@ -39,7 +39,7 @@ function Dashboard() {
   useEffect(() => {
     void (async () => {
       const { data: userData } = await supabase.auth.getUser();
-      const uid = userData.data.user?.id;
+      const uid = userData?.user?.id;
       if (!uid) return;
       const { data: roles, error: rolesError } = await supabase
         .from("user_roles")
