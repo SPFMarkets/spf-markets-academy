@@ -12,3 +12,4 @@
 - [x] Header sign-in / sign-out button on the lessons page
 - [x] Dashboard of quiz completions per lesson at /dashboard (owner-only)
 - [x] Expand curriculum to 12 lessons (4 per school) with quizzes
+- [x] Expand curriculum to 18 lessons (6 per school) with quizzes
