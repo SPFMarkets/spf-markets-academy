@@ -267,6 +267,124 @@ export const curriculum: Module[] = [
           },
         ],
       },
+      {
+        id: "fundamental-analysis-news",
+        title: "Fundamental Analysis & Economic News",
+        summary:
+          "Currencies are priced on economies. Learn which numbers move them and why the surprise matters more than the number.",
+        minutes: 7,
+        blocks: [
+          {
+            type: "p",
+            text: "A currency strengthens when its economy attracts capital — higher interest rates, strong growth, political stability. Fundamental analysis is the study of those forces, and its heartbeat is the economic calendar.",
+          },
+          { type: "h2", text: "The releases that move markets" },
+          {
+            type: "list",
+            items: [
+              "Interest rate decisions — the single biggest driver of currency value.",
+              "Inflation (CPI) — shapes where rates go next; hot inflation lifts the currency.",
+              "Employment reports — US Non-Farm Payrolls is the most watched release on earth.",
+              "GDP and retail sales — the broad health check of an economy.",
+            ],
+          },
+          {
+            type: "p",
+            text: "Markets price in expectations weeks ahead. What moves price is the surprise — the gap between what was forecast and what was printed. A strong number that merely matches forecasts can see the currency fall as traders take profit.",
+          },
+          {
+            type: "formula",
+            label: "The surprise factor",
+            expression: "Market reaction ∝ Actual − Forecast",
+            worked: "CPI forecast 3.0%, actual 3.6% → positive surprise → currency rallies",
+          },
+          {
+            type: "callout",
+            title: "Stand aside or size down",
+            text: "Spreads widen and slippage spikes in the seconds around major releases. Beginners should close or reduce positions before red-folder news, not gamble on the print.",
+          },
+        ],
+        quiz: [
+          {
+            question: "What primarily moves a currency on a news release?",
+            options: [
+              "The absolute size of the number",
+              "The gap between the actual figure and the forecast",
+              "The time of day",
+              "The currency's symbol",
+            ],
+            answer: 1,
+            explanation: "Expectations are already priced in — the surprise is what reprices the market.",
+          },
+          {
+            question: "Which release is typically the biggest market mover?",
+            options: [
+              "Trade balance",
+              "Consumer confidence",
+              "Interest rate decisions",
+              "Housing starts",
+            ],
+            answer: 2,
+            explanation: "Interest rates are the price of money itself, so rate decisions dominate currency valuation.",
+          },
+        ],
+      },
+      {
+        id: "demo-trading-getting-started",
+        title: "Demo Trading & Getting Started",
+        summary:
+          "Every professional once traded with fake money. Here is how to use a demo account properly — and when to leave it.",
+        minutes: 6,
+        blocks: [
+          {
+            type: "p",
+            text: "A demo account is a full trading platform fed with live prices but funded with virtual money. It is where you learn the mechanics — placing orders, setting stops, reading the deal ticket — without paying tuition to the market.",
+          },
+          {
+            type: "p",
+            text: "Used well, demo trading is a rehearsal with rules. Used badly, it is a video game: oversized positions, no stops, and habits that will destroy a real account in weeks.",
+          },
+          { type: "h2", text: "Demo with discipline" },
+          {
+            type: "list",
+            items: [
+              "Trade the same size you could afford with real money — not a fictional million.",
+              "Follow your written plan on every single trade, especially the boring ones.",
+              "Journal every demo trade exactly as you would a live one.",
+              "Set a graduation rule: e.g. 30 journal entries with positive expectancy before going live.",
+            ],
+          },
+          {
+            type: "callout",
+            title: "The one thing demo cannot teach",
+            text: "Demo trading carries no fear and no greed. When you go live, start with the smallest size your broker allows — you are paying to learn emotional control, not to get rich.",
+          },
+        ],
+        quiz: [
+          {
+            question: "The healthiest way to use a demo account is to:",
+            options: [
+              "Trade huge size to learn faster",
+              "Skip stops since the money is fake",
+              "Trade exactly as you would with real money",
+              "Only practise winning strategies",
+            ],
+            answer: 2,
+            explanation: "Demo is a rehearsal — the habits you build there are the ones you take live.",
+          },
+          {
+            question: "What can a demo account NOT teach you?",
+            options: [
+              "How to place orders",
+              "How to set a stop-loss",
+              "Emotional control under real risk",
+              "How spreads work",
+            ],
+            answer: 2,
+            explanation: "Fear and greed only appear when real money is at stake.",
+          },
+        ],
+      },
     ],
   },
   {
@@ -503,6 +621,124 @@ export const curriculum: Module[] = [
           },
         ],
       },
+      {
+        id: "timeframes-top-down",
+        title: "Timeframes & Top-Down Analysis",
+        summary:
+          "The same chart can be bullish and bearish at once. The timeframe you choose decides which story you hear.",
+        minutes: 7,
+        blocks: [
+          {
+            type: "p",
+            text: "A daily candle compresses a full day of trading into one bar; a five-minute candle shows a fragment of it. Higher timeframes carry more information per bar, which is why their levels and trends command more respect.",
+          },
+          {
+            type: "p",
+            text: "Top-down analysis starts on the higher timeframe to establish bias — trend direction, key zones — then steps down to a lower timeframe to time the entry. You trade in the direction of the big picture, with the precision of the small one.",
+          },
+          {
+            type: "list",
+            items: [
+              "Weekly / Daily — the map: trend, major support and resistance.",
+              "4-hour / 1-hour — the setup: structure shifts and patterns forming at those zones.",
+              "15-minute / 5-minute — the trigger: the actual entry candle.",
+            ],
+          },
+          {
+            type: "formula",
+            label: "Timeframe ratio",
+            expression: "Trading timeframe ≈ Bias timeframe ÷ 4 to 6",
+            worked: "Daily bias → 4-hour setups → 1-hour entries",
+          },
+          {
+            type: "callout",
+            title: "One pair, three charts",
+            text: "Before any trade, look at the same pair on three timeframes. If they disagree, the trade is not ready — wait for alignment or move on.",
+          },
+        ],
+        quiz: [
+          {
+            question: "In top-down analysis, the higher timeframe is used for:",
+            options: [
+              "Exact entry timing",
+              "Establishing trend bias and key zones",
+              "Calculating pip value",
+              "Avoiding stop-losses",
+            ],
+            answer: 1,
+            explanation: "The higher timeframe sets the map; lower timeframes only time the entry.",
+          },
+          {
+            question: "If your bias comes from the daily chart, a sensible entry timeframe is:",
+            options: ["Monthly", "Weekly", "1-hour or 4-hour", "1-second"],
+            answer: 2,
+            explanation: "Step down by a factor of four to six — daily bias pairs with hourly entries.",
+          },
+        ],
+      },
+      {
+        id: "indicators-rsi-macd",
+        title: "Indicators: RSI & MACD",
+        summary:
+          "Indicators are derivatives of price, not oracles. Two of them earn their place on almost every chart.",
+        minutes: 8,
+        blocks: [
+          {
+            type: "p",
+            text: "The Relative Strength Index measures the speed of recent price changes on a scale from zero to one hundred. Above seventy is called overbought, below thirty oversold — but in a strong trend, RSI can stay 'overbought' for weeks while price keeps rising.",
+          },
+          {
+            type: "formula",
+            label: "Relative Strength Index",
+            expression: "RSI = 100 − 100 ÷ (1 + Avg gain ÷ Avg loss)",
+            worked: "Avg gain 0.8, avg loss 0.4 → RSI = 100 − 100 ÷ 3 = 66.7",
+            terms: [
+              { symbol: "Avg gain/loss", meaning: "Smoothed over 14 periods by default" },
+            ],
+          },
+          {
+            type: "p",
+            text: "MACD tracks the gap between a fast and a slow moving average. When the fast line pulls away from the slow line, momentum is building; when the gap closes, the move is tiring. Crossovers of the signal line mark the shift.",
+          },
+          {
+            type: "list",
+            items: [
+              "RSI divergence — price makes a new high but RSI does not; momentum is fading.",
+              "MACD crossover — the MACD line crossing its signal line flags a momentum shift.",
+              "Use them for confirmation and timing, never as standalone entry signals.",
+            ],
+          },
+          {
+            type: "callout",
+            title: "Divergence is the real signal",
+            text: "Overbought and oversold labels fail in trends. The signal worth waiting for is divergence — price and indicator disagreeing about the strength of a move.",
+          },
+        ],
+        quiz: [
+          {
+            question: "RSI above 70 in a strong uptrend means:",
+            options: [
+              "Sell immediately",
+              "The trend must reverse today",
+              "Momentum is strong — it can stay elevated for weeks",
+              "The indicator is broken",
+            ],
+            answer: 2,
+            explanation: "Overbought is a description of momentum, not a sell signal — trends keep RSI high.",
+          },
+          {
+            question: "Bullish divergence occurs when:",
+            options: [
+              "Price and RSI both make new highs",
+              "Price makes a new low but RSI makes a higher low",
+              "MACD crosses above zero",
+              "RSI hits exactly 50",
+            ],
+            answer: 1,
+            explanation: "Price falling while momentum improves suggests the selling is exhausting itself.",
+          },
+        ],
+      },
     ],
   },
   {
@@ -732,6 +968,128 @@ export const curriculum: Module[] = [
             ],
             answer: 2,
             explanation: "A journal turns your history into statistics — win rate, expectancy, and where you actually go wrong.",
+          },
+        ],
+      },
+      {
+        id: "trading-psychology",
+        title: "Trading Psychology & Discipline",
+        summary:
+          "The market is not your opponent — your own brain is. Master the four emotions that blow up accounts.",
+        minutes: 8,
+        blocks: [
+          {
+            type: "p",
+            text: "Every trading error is an emotion wearing a disguise. Fear closes winners too early. Greed oversizes positions. Hope holds losers past their stop. Revenge re-enters immediately after a loss, doubling down on nothing.",
+          },
+          { type: "h2", text: "The four account killers" },
+          {
+            type: "list",
+            items: [
+              "Fear — cutting winners at the first sign of a pullback.",
+              "Greed — adding size after a win streak, right before the loss.",
+              "Hope — moving a stop 'just this once' to give the trade room.",
+              "Revenge — trading to win back a loss instead of trading the setup.",
+            ],
+          },
+          {
+            type: "p",
+            text: "The antidote is process, not willpower. Fixed risk per trade, a written plan, and a daily loss limit remove the decisions that emotions hijack. You cannot stop feeling fear; you can stop letting it click the mouse.",
+          },
+          {
+            type: "formula",
+            label: "The tilt equation",
+            expression: "Expected damage = Emotional trade size × Reduced edge",
+            worked: "3× normal size × an edge you no longer have = account damage",
+          },
+          {
+            type: "callout",
+            title: "The two-trade rule",
+            text: "After two consecutive losses, step away for the day. Statistically your edge is unchanged — but psychologically you are no longer the person who should be trading it.",
+          },
+        ],
+        quiz: [
+          {
+            question: "Re-entering the market immediately to win back a loss is called:",
+            options: ["Hedging", "Revenge trading", "Scaling in", "Averaging down"],
+            answer: 1,
+            explanation: "Revenge trading is emotion-driven re-entry — the setup is gone, only the feeling remains.",
+          },
+          {
+            question: "The best defence against emotional decisions is:",
+            options: [
+              "Stronger willpower",
+              "Watching more charts",
+              "A fixed process that removes in-trade decisions",
+              "Higher leverage",
+            ],
+            answer: 2,
+            explanation: "Process beats willpower — pre-defined risk and exits leave nothing for emotion to hijack.",
+          },
+        ],
+      },
+      {
+        id: "news-trading-volatility",
+        title: "News Trading & Volatility",
+        summary:
+          "Red-folder events are where spreads widen, stops slip, and fortunes change in seconds. Trade them deliberately or not at all.",
+        minutes: 7,
+        blocks: [
+          {
+            type: "p",
+            text: "Volatility is the speed of price. Around major news it can multiply tenfold in seconds — stops fill far beyond their level, spreads widen several times over, and the price you click is not the price you get.",
+          },
+          {
+            type: "formula",
+            label: "Average True Range",
+            expression: "ATR = Average of true ranges over n periods",
+            worked: "14-day ATR of 80 pips → a 20-pip stop is inside normal noise",
+            terms: [
+              { symbol: "True range", meaning: "Largest of high−low, |high−prev close|, |low−prev close|" },
+              { symbol: "ATR", meaning: "The market's current breathing room" },
+            ],
+          },
+          {
+            type: "p",
+            text: "ATR is the practical tool: it tells you how much a pair normally moves, so your stop can sit outside ordinary noise and your size can shrink when volatility expands. A stop that made sense in a quiet week is a donation in a volatile one.",
+          },
+          {
+            type: "list",
+            items: [
+              "Check the economic calendar every morning before anything else.",
+              "Reduce size or stand aside in the minutes around red-folder releases.",
+              "Widen stops with ATR in volatile regimes — and cut size to keep risk constant.",
+              "Never add to a losing position during a news spike.",
+            ],
+          },
+          {
+            type: "callout",
+            title: "Volatility cuts both ways",
+            text: "The same spike that doubles your profit doubles your loss. If you cannot define exactly where you are wrong before the release, you are gambling, not trading.",
+          },
+        ],
+        quiz: [
+          {
+            question: "ATR is primarily used to:",
+            options: [
+              "Predict the direction of news",
+              "Measure how much a pair normally moves",
+              "Calculate the spread",
+              "Time the London open",
+            ],
+            answer: 1,
+            explanation: "ATR measures typical movement, so stops and size can adapt to current volatility.",
+          },
+          {
+            question: "When volatility doubles, to keep the same money risk you should:",
+            options: [
+              "Double your position size",
+              "Keep everything the same",
+              "Halve your position size",
+              "Remove your stop-loss",
+            ],
+            answer: 2,
+            explanation: "Wider stops mean more pips at risk — size must fall to keep the cash risk constant.",
           },
         ],
       },
