@@ -160,6 +160,113 @@ export const curriculum: Module[] = [
           },
         ],
       },
+      {
+        id: "brokers-spreads-orders",
+        title: "Brokers, Spreads & Order Types",
+        summary:
+          "Your broker is your gateway to the market. Know what you pay them and how your orders actually execute.",
+        minutes: 7,
+        blocks: [
+          {
+            type: "p",
+            text: "A broker quotes you two prices: the bid, where you can sell, and the ask, where you can buy. The gap between them is the spread — the first cost every trade must overcome before it can profit.",
+          },
+          {
+            type: "formula",
+            label: "Spread cost",
+            expression: "Spread cost = Spread in pips × Pip value × Lots",
+            worked: "1.2 pips × $10 × 0.5 lots = $6.00 per trade",
+            terms: [
+              { symbol: "Bid", meaning: "Price at which you sell" },
+              { symbol: "Ask", meaning: "Price at which you buy" },
+            ],
+          },
+          { type: "h2", text: "The orders you will actually use" },
+          {
+            type: "list",
+            items: [
+              "Market order — fills immediately at the best available price.",
+              "Limit order — fills only at your price or better; used for planned entries.",
+              "Stop order — triggers once price trades through a level; the basis of every stop-loss.",
+              "Stop-loss — a protective stop order that caps the damage of a wrong idea.",
+            ],
+          },
+          {
+            type: "callout",
+            title: "Cost awareness",
+            text: "A two-pip spread on a ten-pip target means the market must move twenty percent further in your favour just for you to break even. Scalpers live and die by this number.",
+          },
+        ],
+        quiz: [
+          {
+            question: "The spread is the difference between:",
+            options: [
+              "Two currency pairs",
+              "The bid and the ask",
+              "Entry and stop-loss",
+              "Two brokers' leverage",
+            ],
+            answer: 1,
+            explanation: "The spread is the gap between the bid (sell) and ask (buy) prices.",
+          },
+          {
+            question: "Which order caps your loss on an open position?",
+            options: ["Market order", "Limit order", "Stop-loss", "Trailing take-profit"],
+            answer: 2,
+            explanation: "A stop-loss is a protective stop order that closes the trade at a predefined loss.",
+          },
+        ],
+      },
+      {
+        id: "trading-sessions",
+        title: "Trading Sessions & Market Hours",
+        summary:
+          "The market never sleeps, but liquidity does. Trade when the volume is there to carry your position.",
+        minutes: 6,
+        blocks: [
+          {
+            type: "p",
+            text: "The forex day rolls through four major sessions: Sydney, Tokyo, London and New York. Each has its own character — Asia tends to be quiet and range-bound, while London brings the deepest liquidity of the day.",
+          },
+          {
+            type: "p",
+            text: "The most tradable window is the London–New York overlap, roughly four hours where both centres are open. Spreads tighten, volume peaks, and the day's real trends are usually born here.",
+          },
+          {
+            type: "list",
+            items: [
+              "Sydney / Tokyo — lower volatility; yen and aussie pairs most active.",
+              "London — the largest session; euro and pound pairs come alive.",
+              "New York — dollar pairs dominate; US data releases drive sharp moves.",
+              "Overlaps — where two sessions run together and liquidity peaks.",
+            ],
+          },
+          {
+            type: "callout",
+            title: "Match pair to session",
+            text: "Trading AUD/JPY during New York hours means trading a pair whose home markets are asleep. Align your pairs with the sessions that move them.",
+          },
+        ],
+        quiz: [
+          {
+            question: "The deepest liquidity of the day usually occurs during:",
+            options: [
+              "The Sydney open",
+              "The London–New York overlap",
+              "The Tokyo close",
+              "Weekends",
+            ],
+            answer: 1,
+            explanation: "Both major centres are open during the overlap, so volume and liquidity peak.",
+          },
+          {
+            question: "Which session is typically the quietest for the majors?",
+            options: ["London", "New York", "Sydney/Tokyo", "The overlap"],
+            answer: 2,
+            explanation: "Asian hours tend to be range-bound for EUR/USD and other dollar majors.",
+          },
+        ],
+      },
     ],
   },
   {
@@ -275,6 +382,127 @@ export const curriculum: Module[] = [
           },
         ],
       },
+      {
+        id: "candlesticks-patterns",
+        title: "Candlesticks & Chart Patterns",
+        summary:
+          "Every candle is a record of a battle between buyers and sellers. Learn to read the story in the wicks.",
+        minutes: 8,
+        blocks: [
+          {
+            type: "p",
+            text: "A candlestick shows four prices: open, high, low and close. The body marks the distance between open and close; the wicks show how far price travelled before being rejected.",
+          },
+          {
+            type: "p",
+            text: "Single candles hint at sentiment — a long lower wick at support shows buyers absorbing supply. Patterns of several candles, like engulfing bars or morning stars, carry more weight because they show a shift in control.",
+          },
+          { type: "h2", text: "Patterns worth knowing" },
+          {
+            type: "list",
+            items: [
+              "Bullish engulfing — a green body that fully swallows the prior red body at support.",
+              "Pin bar — a long wick rejecting a level; the wick points away from the likely move.",
+              "Head and shoulders — three peaks marking exhaustion; the neckline break confirms reversal.",
+              "Double top / bottom — two failures at the same level, signalling fading momentum.",
+            ],
+          },
+          {
+            type: "formula",
+            label: "Measured move target",
+            expression: "Target = Breakout level ± Pattern height",
+            worked: "Neckline 1.0850 − (Head 1.0950 − Neckline 1.0850) = 1.0750",
+          },
+          {
+            type: "callout",
+            title: "Context beats pattern",
+            text: "A perfect pin bar in the middle of nowhere is just noise. Patterns only matter at levels that matter — support, resistance, or the edge of a range.",
+          },
+        ],
+        quiz: [
+          {
+            question: "A long lower wick at support suggests:",
+            options: [
+              "Sellers are in control",
+              "Buyers rejected lower prices",
+              "The market is closed",
+              "Volatility is falling",
+            ],
+            answer: 1,
+            explanation: "Price was pushed down and bought back up — a sign of demand at that level.",
+          },
+          {
+            question: "A head and shoulders pattern completes when:",
+            options: [
+              "The head forms",
+              "The right shoulder forms",
+              "Price breaks the neckline",
+              "Volume doubles",
+            ],
+            answer: 2,
+            explanation: "The neckline break is the confirmation that the reversal is underway.",
+          },
+        ],
+      },
+      {
+        id: "trendlines-moving-averages",
+        title: "Trendlines & Moving Averages",
+        summary:
+          "Trend is the only edge a retail trader can borrow. These two tools keep you on the right side of it.",
+        minutes: 7,
+        blocks: [
+          {
+            type: "p",
+            text: "A trendline connects swing lows in an uptrend or swing highs in a downtrend. Two touches draw it; a third touch that holds is the trade. A decisive close through the line is the first warning that the trend is tiring.",
+          },
+          {
+            type: "p",
+            text: "A moving average smooths price into a single line, filtering the noise. The 50 and 200 period averages are watched by so many participants that they become self-fulfilling support and resistance.",
+          },
+          {
+            type: "formula",
+            label: "Simple moving average",
+            expression: "SMA = (P₁ + P₂ + … + Pₙ) ÷ n",
+            worked: "(1.0810 + 1.0830 + 1.0860 + 1.0840 + 1.0880) ÷ 5 = 1.0844",
+            terms: [
+              { symbol: "Pₙ", meaning: "Closing price of period n" },
+              { symbol: "n", meaning: "Number of periods, e.g. 50" },
+            ],
+          },
+          {
+            type: "list",
+            items: [
+              "Price above a rising 200 SMA — long bias; below a falling one — short bias.",
+              "Golden cross — the 50 crossing above the 200, a classic trend signal.",
+              "Death cross — the 50 crossing below the 200, its bearish mirror.",
+            ],
+          },
+          {
+            type: "callout",
+            title: "Lagging, not magic",
+            text: "Moving averages describe the past. Use them to frame bias and place stops, never as standalone entry signals in a ranging market.",
+          },
+        ],
+        quiz: [
+          {
+            question: "A valid uptrend line requires at least:",
+            options: ["One touch", "Two touches", "Three touches", "Five touches"],
+            answer: 1,
+            explanation: "Two swing lows define the line; the third touch is where traders act on it.",
+          },
+          {
+            question: "A golden cross is:",
+            options: [
+              "Price crossing the spread",
+              "The 50 SMA crossing above the 200 SMA",
+              "Two trendlines intersecting",
+              "A candlestick pattern",
+            ],
+            answer: 1,
+            explanation: "The 50-period average rising through the 200-period average signals a strengthening uptrend.",
+          },
+        ],
+      },
     ],
   },
   {
@@ -379,6 +607,131 @@ export const curriculum: Module[] = [
             options: ["Monday", "Wednesday", "Friday", "Sunday"],
             answer: 1,
             explanation: "Wednesday rollover covers the weekend value date.",
+          },
+        ],
+      },
+      {
+        id: "risk-management-drawdowns",
+        title: "Risk Management & Drawdowns",
+        summary:
+          "Survival is a strategy. The maths of drawdowns explains why most accounts die long before their ideas do.",
+        minutes: 9,
+        blocks: [
+          {
+            type: "p",
+            text: "A drawdown is the peak-to-trough decline of your equity. It is the single most honest statistic in trading, because it measures what you actually lived through, not what you hoped for.",
+          },
+          {
+            type: "p",
+            text: "The brutal part is the recovery. Losses and gains are not symmetrical — a fifty percent drawdown needs a one hundred percent gain just to get back to even. The deeper the hole, the steeper the climb out.",
+          },
+          {
+            type: "formula",
+            label: "Recovery required",
+            expression: "Recovery % = Drawdown ÷ (1 − Drawdown)",
+            worked: "50% ÷ (1 − 0.50) = 100% gain needed to break even",
+            terms: [
+              { symbol: "Drawdown", meaning: "Peak-to-trough equity loss, as a decimal" },
+              { symbol: "Recovery", meaning: "Gain required to return to the peak" },
+            ],
+          },
+          { type: "h2", text: "Rules that keep you in the game" },
+          {
+            type: "list",
+            items: [
+              "Cap risk per trade at 1–2% of equity — no exceptions for 'sure things'.",
+              "Set a daily loss limit; hit it and the platform closes for the day.",
+              "Reduce size after a losing streak, not after a winning one.",
+              "Track expectancy: win rate × average win − loss rate × average loss.",
+            ],
+          },
+          {
+            type: "formula",
+            label: "Expectancy",
+            expression: "E = (Win rate × Avg win) − (Loss rate × Avg loss)",
+            worked: "(0.45 × $300) − (0.55 × $150) = $52.50 per trade",
+          },
+          {
+            type: "callout",
+            title: "The professional's secret",
+            text: "Professionals are not better at predicting the market. They are better at losing small, losing rarely, and still being solvent when their edge finally shows up.",
+          },
+        ],
+        quiz: [
+          {
+            question: "Your account falls 25% from its peak. What gain gets you back to even?",
+            options: ["25%", "33.3%", "50%", "20%"],
+            answer: 1,
+            explanation: "0.25 ÷ (1 − 0.25) = 33.3%. Losses and gains are not symmetrical.",
+          },
+          {
+            question: "A strategy wins 40% of the time, averaging $400 wins and $150 losses. Its expectancy is:",
+            options: ["$70 per trade", "$160 per trade", "−$10 per trade", "$250 per trade"],
+            answer: 0,
+            explanation: "(0.40 × 400) − (0.60 × 150) = 160 − 90 = $70 per trade.",
+          },
+        ],
+      },
+      {
+        id: "building-a-trading-plan",
+        title: "Building a Trading Plan",
+        summary:
+          "A plan converts trading from gambling into a repeatable business process. Write it before you need it.",
+        minutes: 8,
+        blocks: [
+          {
+            type: "p",
+            text: "A trading plan answers every question before the market asks it: what you trade, when you trade, where you enter, where you exit, and exactly how much you risk. If a decision is made mid-trade, the plan has failed.",
+          },
+          { type: "h2", text: "The five components" },
+          {
+            type: "list",
+            items: [
+              "Market selection — two or three pairs you know deeply, not twenty you skim.",
+              "Session filter — only trade the hours where your pairs have liquidity.",
+              "Entry criteria — the exact conditions that must align before you click buy.",
+              "Exit rules — stop-loss and target defined before entry, never adjusted in hope.",
+              "Risk parameters — fixed risk per trade, daily loss limit, maximum open positions.",
+            ],
+          },
+          {
+            type: "p",
+            text: "Then comes the part nobody wants: the journal. Record every trade with its reasoning and its result. After thirty entries your journal will tell you more about your edge than any indicator ever will.",
+          },
+          {
+            type: "formula",
+            label: "Journal win rate check",
+            expression: "Win rate = Winning trades ÷ Total trades × 100%",
+            worked: "18 wins ÷ 40 trades × 100 = 45%",
+          },
+          {
+            type: "callout",
+            title: "Plan the trade, trade the plan",
+            text: "The market will always offer a reason to break your rules. The plan exists for exactly that moment.",
+          },
+        ],
+        quiz: [
+          {
+            question: "When should your stop-loss and target be decided?",
+            options: [
+              "After the trade moves in your favour",
+              "Before entering the trade",
+              "When the trade is at breakeven",
+              "At the end of the session",
+            ],
+            answer: 1,
+            explanation: "Exits defined before entry are decisions; exits defined mid-trade are emotions.",
+          },
+          {
+            question: "The main purpose of a trading journal is to:",
+            options: [
+              "Impress other traders",
+              "Record your best trades only",
+              "Measure your edge with real data over time",
+              "Calculate swap costs",
+            ],
+            answer: 2,
+            explanation: "A journal turns your history into statistics — win rate, expectancy, and where you actually go wrong.",
           },
         ],
       },
