@@ -385,6 +385,128 @@ export const curriculum: Module[] = [
           },
         ],
       },
+      {
+        id: "correlations-safe-havens",
+        title: "Currency Correlations & Safe Havens",
+        summary:
+          "Pairs do not move independently. Knowing which currencies travel together stops you from doubling a bet you meant to place once.",
+        minutes: 7,
+        blocks: [
+          {
+            type: "p",
+            text: "Correlation measures how two pairs move in relation to each other, from +1 (lockstep) to −1 (mirror image). EUR/USD and GBP/USD often correlate above +0.8 — buying both is not two trades, it is one trade twice the size.",
+          },
+          {
+            type: "formula",
+            label: "Effective exposure",
+            expression: "Net risk = Position A + (Correlation × Position B)",
+            worked: "1 lot EUR/USD + (0.8 × 1 lot GBP/USD) ≈ 1.8 lots of the same bet",
+            terms: [
+              { symbol: "+1", meaning: "Pairs move together perfectly" },
+              { symbol: "−1", meaning: "Pairs move in perfect opposition" },
+            ],
+          },
+          { type: "h2", text: "The safe-haven trio" },
+          {
+            type: "list",
+            items: [
+              "US dollar — the world's reserve currency; bid in every crisis.",
+              "Japanese yen — strengthened by repatriation when markets panic.",
+              "Swiss franc — the classic European bolt-hole in times of stress.",
+            ],
+          },
+          {
+            type: "p",
+            text: "In risk-off episodes, capital flees growth-linked currencies like the aussie and kiwi into these havens. Watching USD/JPY fall fast is often the earliest tell that something in the wider market has gone wrong.",
+          },
+          {
+            type: "callout",
+            title: "Check before you stack",
+            text: "Before opening a second position, ask what it correlates with. Three 'different' trades that are all secretly long the dollar is one trade with triple the risk.",
+          },
+        ],
+        quiz: [
+          {
+            question: "EUR/USD and GBP/USD correlate at +0.8. Buying one lot of each is closest to:",
+            options: [
+              "Two independent trades",
+              "One trade at roughly 1.8× size",
+              "A hedged, risk-free position",
+              "Half a trade",
+            ],
+            answer: 1,
+            explanation: "High positive correlation means the positions largely overlap — the risk stacks.",
+          },
+          {
+            question: "In a market panic, capital typically flows into:",
+            options: [
+              "AUD and NZD",
+              "Emerging market currencies",
+              "USD, JPY and CHF",
+              "Exotic pairs",
+            ],
+            answer: 2,
+            explanation: "The dollar, yen and franc are the classic safe havens in risk-off episodes.",
+          },
+        ],
+      },
+      {
+        id: "account-types-choosing-broker",
+        title: "Account Types & Choosing a Broker",
+        summary:
+          "The broker you choose is a business partner that takes the other side of your costs. Choose like it matters — because it does.",
+        minutes: 7,
+        blocks: [
+          {
+            type: "p",
+            text: "Brokers broadly come in two flavours. Dealing-desk brokers may internalise your trades, while ECN-style brokers route orders to a liquidity pool and charge a commission on raw spreads. Neither is automatically better — the total cost per trade is what counts.",
+          },
+          {
+            type: "formula",
+            label: "True trading cost",
+            expression: "Cost per lot = (Spread in pips × Pip value) + Commission",
+            worked: "(0.2 × $10) + $7 = $9 vs a 1.2-pip zero-commission account at $12",
+            terms: [
+              { symbol: "Raw spread", meaning: "Near-zero spread plus commission" },
+              { symbol: "Marked-up spread", meaning: "No commission, wider spread" },
+            ],
+          },
+          { type: "h2", text: "The checklist that matters" },
+          {
+            type: "list",
+            items: [
+              "Regulation — a serious licence from a top-tier regulator is non-negotiable.",
+              "Total cost — spread plus commission plus swap, not just the headline spread.",
+              "Execution — how stops and orders fill during fast markets.",
+              "Withdrawals — fast, reliable payouts matter more than any bonus.",
+            ],
+          },
+          {
+            type: "callout",
+            title: "Bonuses are not value",
+            text: "A deposit bonus with withdrawal restrictions is marketing, not money. Compare brokers on regulation, cost and execution — the things that still matter on your hundredth trade.",
+          },
+        ],
+        quiz: [
+          {
+            question: "A raw-spread account charges 0.2 pips + $7 commission. A zero-commission account charges 1.2 pips. Per standard lot, which is cheaper?",
+            options: [
+              "The zero-commission account",
+              "The raw-spread account",
+              "They cost the same",
+              "Impossible to say",
+            ],
+            answer: 1,
+            explanation: "Raw: (0.2 × $10) + $7 = $9. Zero-commission: 1.2 × $10 = $12. Compare total cost, not headlines.",
+          },
+          {
+            question: "The single most important broker criterion is:",
+            options: ["Deposit bonuses", "Regulation by a top-tier authority", "Platform colours", "Leverage of 1000:1"],
+            answer: 1,
+            explanation: "Regulation determines whether your funds are protected and the broker can be held to account.",
+          },
+        ],
+      },
     ],
   },
   {
@@ -739,6 +861,127 @@ export const curriculum: Module[] = [
           },
         ],
       },
+      {
+        id: "fibonacci-retracements",
+        title: "Fibonacci Retracements & Extensions",
+        summary:
+          "Markets breathe in proportions. Fibonacci levels map where a pullback is likely to end and where the next leg aims.",
+        minutes: 8,
+        blocks: [
+          {
+            type: "p",
+            text: "After a strong move, price rarely continues in a straight line — it pulls back, then resumes. Fibonacci retracement levels, derived from ratios in the Fibonacci sequence, mark the depths where that pullback statistically tends to stall.",
+          },
+          {
+            type: "list",
+            items: [
+              "38.2% — a shallow pullback; the sign of a very strong trend.",
+              "50% — not a true Fibonacci ratio, but watched by everyone.",
+              "61.8% — the golden ratio; the classic deep-retracement entry zone.",
+            ],
+          },
+          {
+            type: "formula",
+            label: "Retracement level",
+            expression: "Level = Swing high − (Ratio × Swing range)",
+            worked: "1.1000 − (0.618 × 0.0200) = 1.0876 for a 200-pip up-move",
+            terms: [
+              { symbol: "Swing range", meaning: "High minus low of the measured move" },
+              { symbol: "Ratio", meaning: "0.382, 0.5 or 0.618" },
+            ],
+          },
+          {
+            type: "p",
+            text: "Extensions run the same maths in the other direction: the 127.2% and 161.8% extensions project where the resumed trend may run out of steam — natural spots to take profit.",
+          },
+          {
+            type: "callout",
+            title: "Confluence or nothing",
+            text: "A Fibonacci level alone is a line on a chart. A 61.8% retracement that lands on prior structure, a trendline and a round number is a trade.",
+          },
+        ],
+        quiz: [
+          {
+            question: "The most watched deep-retracement entry level is:",
+            options: ["23.6%", "38.2%", "61.8%", "100%"],
+            answer: 2,
+            explanation: "The 61.8% golden ratio is the classic deep-pullback zone.",
+          },
+          {
+            question: "Fibonacci levels work best when they:",
+            options: [
+              "Are drawn on every swing",
+              "Align with other evidence like structure or trendlines",
+              "Are used on the 1-minute chart",
+              "Are traded blindly",
+            ],
+            answer: 1,
+            explanation: "Confluence — multiple independent reasons at the same level — is what gives a level weight.",
+          },
+        ],
+      },
+      {
+        id: "price-action-reading-charts",
+        title: "Reading Price Action",
+        summary:
+          "Strip the indicators away and price itself tells the story — if you know which features to read.",
+        minutes: 8,
+        blocks: [
+          {
+            type: "p",
+            text: "Price action trading reads the raw chart: swings, candles and levels, without indicators. The premise is simple — every indicator is derived from price, so price is the fastest information available.",
+          },
+          { type: "h2", text: "What to read, in order" },
+          {
+            type: "list",
+            items: [
+              "Structure first — is the market trending, ranging, or transitioning?",
+              "Swings — where are the obvious highs and lows other traders see?",
+              "Momentum — are bodies growing or shrinking as the move progresses?",
+              "Rejection — long wicks at levels show who lost the last battle.",
+            ],
+          },
+          {
+            type: "p",
+            text: "Ranging markets reward buying support and selling resistance. Trending markets punish it. The first and most profitable skill is simply naming the regime you are in before deciding what to do.",
+          },
+          {
+            type: "formula",
+            label: "Range expectation",
+            expression: "Expected rotation ≈ Range height ÷ 2 from the midpoint",
+            worked: "Range 1.0800–1.0900 → midpoint 1.0850, rotations of ~50 pips",
+          },
+          {
+            type: "callout",
+            title: "Trade what is, not what should be",
+            text: "The chart does not owe you a trend. If structure is messy and swings overlap, the correct position is often no position at all.",
+          },
+        ],
+        quiz: [
+          {
+            question: "The first thing to establish when reading a chart is:",
+            options: [
+              "Which indicator to add",
+              "Whether the market is trending or ranging",
+              "The spread",
+              "The next news release time",
+            ],
+            answer: 1,
+            explanation: "The regime — trend or range — decides which tactics are appropriate.",
+          },
+          {
+            question: "Shrinking candle bodies as a move progresses suggest:",
+            options: [
+              "Momentum is building",
+              "Momentum is fading",
+              "The market is closed",
+              "Spreads are widening",
+            ],
+            answer: 1,
+            explanation: "Smaller bodies mean each new push achieves less — the move is losing energy.",
+          },
+        ],
+      },
     ],
   },
   {
@@ -1090,6 +1333,132 @@ export const curriculum: Module[] = [
             ],
             answer: 2,
             explanation: "Wider stops mean more pips at risk — size must fall to keep the cash risk constant.",
+          },
+        ],
+      },
+      {
+        id: "scaling-advanced-orders",
+        title: "Scaling In, Scaling Out & Trade Management",
+        summary:
+          "Professionals rarely enter or exit all at once. Managing a position in pieces smooths both the maths and the emotions.",
+        minutes: 8,
+        blocks: [
+          {
+            type: "p",
+            text: "Scaling out means closing part of a winning position at a first target and letting the rest run. You bank some profit, reduce risk to near zero, and keep exposure to the big move — at the cost of a smaller maximum win.",
+          },
+          {
+            type: "formula",
+            label: "Blended exit",
+            expression: "Avg exit = (Size₁ × Exit₁ + Size₂ × Exit₂) ÷ Total size",
+            worked: "(0.5 × +40 pips + 0.5 × +100 pips) = +70 pips average",
+          },
+          {
+            type: "p",
+            text: "Scaling in is the dangerous mirror. Adding to a winner as it confirms is legitimate pyramiding. Adding to a loser to 'improve the average price' is how accounts die — the position grows exactly when the idea is failing.",
+          },
+          {
+            type: "list",
+            items: [
+              "Move the stop to breakeven only after structure confirms, not out of fear.",
+              "Trail stops behind swing points, letting the market decide when the trend ends.",
+              "Never scale into a loser — your stop already defined where you are wrong.",
+            ],
+          },
+          {
+            type: "callout",
+            title: "Write the management plan first",
+            text: "Decide before entry: where you take partials, where the stop moves, what invalidates the trade. In-trade improvisation is emotion with extra steps.",
+          },
+        ],
+        quiz: [
+          {
+            question: "Scaling out of a winning trade primarily:",
+            options: [
+              "Maximises total profit",
+              "Banks partial profit and reduces risk",
+              "Increases exposure",
+              "Avoids paying the spread",
+            ],
+            answer: 1,
+            explanation: "Partials trade some upside for certainty and lower risk on the remainder.",
+          },
+          {
+            question: "Adding to a losing position to lower your average entry is:",
+            options: [
+              "Smart pyramiding",
+              "Averaging down — growing risk on a failing idea",
+              "Required by risk management",
+              "Only bad in uptrends",
+            ],
+            answer: 1,
+            explanation: "The position grows precisely when the market is proving the idea wrong.",
+          },
+        ],
+      },
+      {
+        id: "backtesting-strategy",
+        title: "Backtesting & Proving Your Edge",
+        summary:
+          "An untested strategy is an opinion. Backtesting turns 'I think this works' into numbers you can trust — or discard.",
+        minutes: 9,
+        blocks: [
+          {
+            type: "p",
+            text: "Backtesting applies your exact rules to historical data, trade by trade, as if you had traded them live. Done honestly, it reveals win rate, expectancy, drawdown and losing streaks before they cost you money.",
+          },
+          {
+            type: "p",
+            text: "The cardinal sin is curve-fitting: tweaking rules until the past looks perfect. A strategy tuned to fit history exactly usually fits nothing else. Fewer rules, tested across more years and more pairs, generalise better.",
+          },
+          {
+            type: "formula",
+            label: "Sample size check",
+            expression: "Minimum trades for a meaningful test ≈ 100+",
+            worked: "20 trades at 60% win rate proves almost nothing; 200 trades starts to",
+            terms: [
+              { symbol: "Sample", meaning: "Trades included in the test" },
+              { symbol: "Variance", meaning: "Luck dominates small samples" },
+            ],
+          },
+          { type: "h2", text: "An honest testing process" },
+          {
+            type: "list",
+            items: [
+              "Write fixed rules first — entry, exit, stop, size, sessions, news filter.",
+              "Scroll the chart back and trade forward bar by bar, logging every signal.",
+              "Include the ugly periods — ranging months and news chaos, not just clean trends.",
+              "Finish with a forward test on demo before risking a single real dollar.",
+            ],
+          },
+          {
+            type: "callout",
+            title: "Expect the live discount",
+            text: "Live results are almost always worse than backtests — slippage, spreads and hesitation all take a cut. If the backtest is only marginally profitable, the live version is a loser.",
+          },
+        ],
+        quiz: [
+          {
+            question: "Curve-fitting means:",
+            options: [
+              "Testing on too much data",
+              "Tuning rules until they fit the past perfectly but fail going forward",
+              "Using a demo account",
+              "Drawing smooth trendlines",
+            ],
+            answer: 1,
+            explanation: "Over-optimised rules memorise history instead of capturing a real edge.",
+          },
+          {
+            question: "Why should a backtest include choppy, unfavourable periods?",
+            options: [
+              "To make the results look worse",
+              "Because live trading includes them too — skipping them inflates the results",
+              "It should not — only test trends",
+              "To practise drawing ranges",
+            ],
+            answer: 1,
+            explanation: "A strategy must survive its bad months; testing only good ones is self-deception.",
           },
         ],
       },
