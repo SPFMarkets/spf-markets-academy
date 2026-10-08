@@ -13,3 +13,5 @@
 - [x] Dashboard of quiz completions per lesson at /dashboard (owner-only)
 - [x] Expand curriculum to 12 lessons (4 per school) with quizzes
 - [x] Expand curriculum to 18 lessons (6 per school) with quizzes
+- [x] Expand curriculum to 24 lessons (8 per school) with quizzes
+- [ ] Verify all lessons render and quizzes work (user asked to verify after all lessons are added)
