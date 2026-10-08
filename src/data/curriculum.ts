@@ -1726,6 +1726,137 @@ export const curriculum: Module[] = [
           },
         ],
       },
+      {
+        id: "correlated-exposure-portfolio-risk",
+        title: "Correlated Exposure & Portfolio Risk",
+        summary:
+          "Three long-USD positions is not three trades — it is one big USD trade wearing three costumes. How correlation silently multiplies your risk and how to cap it.",
+        minutes: 8,
+        blocks: [
+          {
+            type: "p",
+            text: "Position sizing rules protect you trade by trade. But when you hold several positions at once, the risk that matters is the risk of the whole book — and correlated pairs turn several 'safe' trades into one dangerous aggregate bet.",
+          },
+          { type: "h2", text: "Hidden correlation" },
+          {
+            type: "list",
+            items: [
+              "EUR/USD, GBP/USD, AUD/USD and NZD/USD all share the US dollar — they move together far more often than not.",
+              "Short EUR/USD and short GBP/USD simultaneously is roughly one large short-dollar trade, not two independent ones.",
+              "Long EUR/USD plus short USD/JPY is double short-USD exposure wearing two tickets.",
+              "Safe-haven flows (JPY, CHF) and risk-off moves can flip normal correlations precisely when you least want it.",
+          ],
+          },
+          {
+            type: "formula",
+            label: "Effective exposure",
+            expression: "Effective risk = Σ (risk per trade × correlation weight)",
+            worked: "$1 risk each on two ~0.85-correlated shorts ≈ $1.85 of one bet, not $2 of two bets",
+            terms: [
+              { symbol: "Risk per trade", meaning: "The R you assigned to each position" },
+              { symbol: "Correlation", meaning: "1 = identical moves, 0 = independent" },
+              { symbol: "Effective risk", meaning: "What your book really has at stake" },
+            ],
+          },
+          {
+            type: "p",
+            text: "The professional fix is a portfolio-level cap. Decide the maximum total risk on any one underlying theme — for example, 2% across all correlated USD positions. If three setups would each risk 1%, take the best two, or cut every size until the book fits the cap.",
+          },
+          {
+            type: "callout",
+            title: "One bet, many tickets",
+            text: "Before adding any position, ask: does this increase a bet I already have? If the answer is yes, it is not diversification — it is doubling, and it must fit inside the same risk budget.",
+          },
+        ],
+        quiz: [
+          {
+            question: "You are short EUR/USD, GBP/USD and AUD/USD simultaneously. Your true exposure is:",
+            options: [
+              "Three independent trades",
+              "Primarily one large short-USD position",
+              "A diversified portfolio",
+              "Zero risk",
+            ],
+            answer: 1,
+            explanation: "All three share the US dollar as the quote currency — the book is effectively one big short-USD bet.",
+          },
+          {
+            question: "Long EUR/USD combined with short USD/JPY gives you:",
+            options: ["A hedge", "Double short-USD exposure", "No USD exposure", "A carry trade"],
+            answer: 1,
+            explanation: "Long EUR/USD is long EUR / short USD; short USD/JPY is also short USD. Both legs bet the same direction on the dollar.",
+          },
+        ],
+      },
+      {
+        id: "journaling-performance-review",
+        title: "Journaling & Performance Review",
+        summary:
+          "The trading journal is your laboratory: the record that turns hundreds of anonymous trades into a handful of setups you can actually trust — and shows you exactly which ones pay you.",
+        minutes: 7,
+        blocks: [
+          {
+            type: "p",
+            text: "Memory is a terrible analyst. It remembers the highlight-reel winners and quietly deletes the rule-breaking losses. A journal replaces memory with data, and data is what lets you improve a system instead of just rotating through them.",
+          },
+          { type: "h2", text: "What every entry needs" },
+          {
+            type: "list",
+            items: [
+              "A screenshot of the chart at entry, with the level and the setup marked.",
+              "The thesis — one or two sentences on why this trade made sense.",
+              "Entry, stop and target prices, plus the risk percentage taken.",
+              "Emotional state: calm, impatient, revenge, FOMO. Be honest — nobody else reads it.",
+              "The outcome and a grade: did you follow the plan, regardless of profit?",
+          ],
+          },
+          {
+            type: "formula",
+            label: "Expectancy",
+            expression: "Expectancy = (Win% × Avg win) − (Loss% × Avg loss)",
+            worked: "40% wins of 2R, 60% losses of 1R → 0.8R − 0.6R = +0.2R per trade",
+            terms: [
+              { symbol: "R", meaning: "Your initial risk — the unit all results are measured in" },
+              { symbol: "Win%", meaning: "Share of winning trades" },
+              { symbol: "Expectancy", meaning: "Average result per trade over many trades" },
+            ],
+          },
+          { type: "h2", text: "The weekly review" },
+          {
+            type: "list",
+            items: [
+              "Group trades by setup — the journal is only useful when it is sliced.",
+              "Find the leak: which setup, session or emotional state produces the losses.",
+              "Change one thing at a time — two variables changed at once teaches you nothing.",
+              "Judge execution separately from outcome: a good trade that lost is still a good trade.",
+            ],
+          },
+          {
+            type: "callout",
+            title: "Data beats feelings",
+            text: "You do not need more signals — you need to know which 20% of your trades pay you. The journal tells you that; your memory will lie to you every single week.",
+          },
+        ],
+        quiz: [
+          {
+            question: "A system wins 40% of the time with an average winner of 2R and an average loser of 1R. Expectancy per trade is:",
+            options: ["−0.2R", "+0.2R", "+0.8R", "Zero"],
+            answer: 1,
+            explanation: "(0.4 × 2R) − (0.6 × 1R) = 0.8R − 0.6R = +0.2R. A 40% win rate is perfectly viable when winners are twice the losers.",
+          },
+          {
+            question: "The main purpose of a trading journal is to:",
+            options: [
+              "Impress other traders",
+              "Replace the need for backtesting entirely",
+              "Show which setups actually make you money",
+              "Track your broker's fees",
+            ],
+            answer: 2,
+            explanation: "Sliced by setup, the journal reveals where the real edge is — and which habits are quietly paying for it.",
+          },
+        ],
+      },
     ],
   },
 ];
