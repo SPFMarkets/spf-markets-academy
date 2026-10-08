@@ -507,6 +507,141 @@ export const curriculum: Module[] = [
           },
         ],
       },
+      {
+        id: "lot-sizes-trade-value",
+        title: "Lot Sizes & Trade Value",
+        summary:
+          "Standard, mini, micro and nano lots — how the size you pick turns every pip into real money, and why lot size is the biggest single lever on your risk.",
+        minutes: 7,
+        blocks: [
+          {
+            type: "p",
+            text: "A lot is simply a standardised bundle of currency. One standard lot equals 100,000 units of the base currency. Because forex prices move in tiny fractions, position size is measured in bundles — and each bundle size changes what a pip is worth to you.",
+          },
+          { type: "h2", text: "The lot ladder" },
+          {
+            type: "list",
+            items: [
+              "Standard lot = 100,000 units → typically $10 per pip on USD-quoted pairs.",
+              "Mini lot = 10,000 units → about $1 per pip.",
+              "Micro lot = 1,000 units → about $0.10 per pip — the natural starting size.",
+              "Nano lot = 100 units → about $0.01 per pip, offered by only some brokers.",
+            ],
+          },
+          {
+            type: "formula",
+            label: "Position size",
+            expression: "Value of position = lots × 100,000 units of the base currency",
+            worked: "0.4 lots of EUR/USD = €40,000 of exposure",
+            terms: [
+              { symbol: "Lots", meaning: "Number of standard bundles traded" },
+              { symbol: "Base", meaning: "The first currency in the pair" },
+            ],
+          },
+          {
+            type: "p",
+            text: "For pairs quoted to four decimal places where the USD is the quote currency — EUR/USD, GBP/USD, AUD/USD — a standard lot has a fixed pip value of $10. The pip value scales down with the lot: a mini lot is $1 per pip, a micro lot $0.10.",
+          },
+          {
+            type: "formula",
+            label: "Pip value",
+            expression: "Pip value = pip size × units of base currency",
+            worked: "1 pip on 0.10 lots of EUR/USD = 0.0001 × 10,000 = $1",
+            terms: [
+              { symbol: "Pip size", meaning: "0.0001 for most pairs, 0.01 for JPY pairs" },
+              { symbol: "Units", meaning: "Position size in base-currency units" },
+            ],
+          },
+          {
+            type: "callout",
+            title: "Size before strategy",
+            text: "Beginners lose money through oversized positions far more often than through bad analysis. Choosing the lot size that makes each pip worth a small fraction of your account is the first risk decision you make — before the trade even starts.",
+          },
+        ],
+        quiz: [
+          {
+            question: "One standard lot of EUR/USD moves 15 pips in your favour. At $10 per pip, what is the profit?",
+            options: ["$15", "$150", "$1,500", "15% of the account"],
+            answer: 1,
+            explanation: "15 pips × $10 per pip = $150 on a standard lot.",
+          },
+          {
+            question: "You have a $2,000 account and want each pip to be worth about $0.20. Which size fits?",
+            options: ["One standard lot", "One mini lot", "Two micro lots", "Ten mini lots"],
+            answer: 2,
+            explanation: "A micro lot is $0.10 per pip, so two micro lots give $0.20 per pip — a sensible size for a small account.",
+          },
+        ],
+      },
+      {
+        id: "common-beginner-mistakes",
+        title: "Common Beginner Mistakes",
+        summary:
+          "The five errors that empty most new accounts — and the recovery maths that explains why avoiding one big loss matters more than finding another winning setup.",
+        minutes: 6,
+        blocks: [
+          {
+            type: "p",
+            text: "Most new traders do not fail because they lack a winning strategy. They fail because of a handful of behavioural mistakes that any strategy would struggle to survive. Learn them now, and you skip the most expensive part of the education.",
+          },
+          { type: "h2", text: "The classic five" },
+          {
+            type: "list",
+            items: [
+              "Overleveraging — positions so large that one ordinary move wipes out the account.",
+              "Trading without a stop loss — 'it will come back' is not a risk plan.",
+              "Revenge trading — immediately re-entering after a loss, with bigger size and no setup.",
+              "Trading too many pairs — no pair gets studied properly and correlated risk stacks up.",
+              "Switching systems weekly — abandoning a method before it has enough trades to be judged.",
+            ],
+          },
+          {
+            type: "formula",
+            label: "Recovery maths",
+            expression: "Gain needed to recover = Drawdown / (1 − Drawdown)",
+            worked: "A 50% loss needs a 100% gain just to get back to break-even",
+            terms: [
+              { symbol: "Drawdown", meaning: "Peak-to-valley loss as a decimal (0.5 = 50%)" },
+              { symbol: "Recovery", meaning: "Gain required to return to the previous high" },
+            ],
+          },
+          { type: "h2", text: "How to avoid them" },
+          {
+            type: "list",
+            items: [
+              "Fix risk per trade as a percentage (0.5–1%) and let the lot size follow from it.",
+              "Attach the stop loss the moment the order is placed — never 'mentally'.",
+              "After a loss, the rule is simple: no new trade until the original setup appears again.",
+              "Master one or two pairs until their behaviour is familiar in trends, ranges and news.",
+              "Give any system at least 50–100 trades of data before deciding it does not work.",
+            ],
+          },
+          {
+            type: "callout",
+            title: "Blow-ups are mathematical",
+            text: "Accounts do not usually die from many small losses — they die from one oversized, unrecovered one. Protecting the downside is the whole game.",
+          },
+        ],
+        quiz: [
+          {
+            question: "After a 50% drawdown, what gain is required to return to break-even?",
+            options: ["50%", "75%", "100%", "125%"],
+            answer: 2,
+            explanation: "0.5 / (1 − 0.5) = 1.0 — a 100% gain is needed to undo a 50% loss. Deep holes are brutally expensive to climb out of.",
+          },
+          {
+            question: "The main danger of revenge trading is:",
+            options: [
+              "It increases broker commissions",
+              "Oversized, unplanned entries that turn one loss into a string of them",
+              "It only works on Mondays",
+              "It reduces the spread you pay",
+            ],
+            answer: 1,
+            explanation: "Revenge trades have no setup and outsized size — they are the most common way a normal loss becomes an account-ender.",
+          },
+        ],
+      },
     ],
   },
   {
@@ -979,6 +1114,135 @@ export const curriculum: Module[] = [
             ],
             answer: 1,
             explanation: "Smaller bodies mean each new push achieves less — the move is losing energy.",
+          },
+        ],
+      },
+      {
+        id: "breakouts-fakeouts",
+        title: "Breakouts & Fakeouts",
+        summary:
+          "Big moves are born at breakouts — and so are the trades that trap the most people. How to tell a genuine level break from the stop hunt that precedes it.",
+        minutes: 8,
+        blocks: [
+          {
+            type: "p",
+            text: "A breakout is when price pushes through a level everyone can see — a swing high, a range edge, a trendline. Because these levels are obvious, stop orders cluster just beyond them, and the market has learned to feed on that cluster. That is why so many first-time breakouts fail.",
+          },
+          { type: "h2", text: "What a real breakout looks like" },
+          {
+            type: "list",
+            items: [
+              "The candle closes beyond the level — wicks through a level are not breakouts.",
+              "Expansion: the breakout candle has visibly larger range and momentum than recent candles.",
+              "The retest holds: price pulls back to the broken level and it now acts as support or resistance.",
+              "Continuation follows — higher lows after an upside break, lower highs after a downside break.",
+          ],
+          },
+          { type: "h2", text: "The fakeout" },
+          {
+            type: "p",
+            text: "A fakeout (or false breakout) is a push beyond the level that immediately reverses. It usually comes as a single long wick that runs the resting stops and snaps back inside the range. The traders who bought the wick are now trapped, and their exits fuel the move in the opposite direction — which is exactly why fakeouts are tradeable in their own right.",
+          },
+          {
+            type: "formula",
+            label: "Breakout quality",
+            expression: "Quality = Close beyond level + Range expansion + Retest that holds",
+            worked: "Two of three present → wait; all three present → tradeable",
+            terms: [
+              { symbol: "Close", meaning: "Body beyond the level, not just a wick" },
+              { symbol: "Expansion", meaning: "Breakout candle larger than the recent average" },
+              { symbol: "Retest", meaning: "Pullback to the old level that holds" },
+            ],
+          },
+          {
+            type: "callout",
+            title: "Zoom out first",
+            text: "A breakout of a two-hour-old level is noise. Only levels that are obvious on the daily or 4-hour chart attract enough orders to matter. The more visible the level, the more violent both the fakeout and the true break.",
+          },
+        ],
+        quiz: [
+          {
+            question: "A candle spikes above resistance but closes back below it. This is best described as:",
+            options: ["A confirmed breakout", "A false breakout (fakeout)", "A trend continuation", "A spread widening"],
+            answer: 1,
+            explanation: "Only a close beyond the level counts. A wick through it that reverses is a classic fakeout — often a stop hunt.",
+          },
+          {
+            question: "The strongest confirmation that a breakout is real is:",
+            options: [
+              "The wick touches the level",
+              "Price closes beyond the level and the retest holds",
+              "You feel the momentum",
+              "Volume and range shrink after the break",
+            ],
+            answer: 1,
+            explanation: "Close plus holding retest is the professional standard — it filters most stop hunts before you commit.",
+          },
+        ],
+      },
+      {
+        id: "ranges-mean-reversion",
+        title: "Trading Ranges & Mean Reversion",
+        summary:
+          "Markets spend most of their life going sideways. How to read a range, fade its edges with the odds on your side, and recognise the conditions that precede its death.",
+        minutes: 8,
+        blocks: [
+          {
+            type: "p",
+            text: "Trending is the exception, not the rule — currency pairs spend most of their time oscillating between visible boundaries. A range is defined by two levels: support, where buyers repeatedly step in, and resistance, where sellers repeatedly appear. Between them sits the midpoint, the mean that price keeps reverting toward.",
+          },
+          { type: "h2", text: "Anatomy of a range" },
+          {
+            type: "list",
+            items: [
+              "At least two touches of support and two of resistance, roughly horizontal.",
+              "Price rotates from edge to edge through the midpoint — the rotation is the tradeable rhythm.",
+              "Candles near the edges tend to shrink and lose momentum before reverting.",
+              "The most probable trade fades the edge: sell resistance, buy support, target the opposite side.",
+          ],
+          },
+          {
+            type: "formula",
+            label: "Range midpoint",
+            expression: "Midpoint = (Range high + Range low) / 2",
+            worked: "High 1.1050, low 1.0950 → midpoint 1.1000",
+            terms: [
+              { symbol: "High / Low", meaning: "The tested boundaries of the range" },
+              { symbol: "Midpoint", meaning: "The mean price gravitates back toward" },
+            ],
+          },
+          {
+            type: "p",
+            text: "Mean reversion works because a range is a balance: orders accumulate at the edges and get consumed. The edge trades are taken when momentum is clearly fading at the boundary — not against a candle that is still slamming into it. Entering mid-range is the amateur's mistake: the odds and the reward are both poor there.",
+          },
+          {
+            type: "callout",
+            title: "Ranges die loudly",
+            text: "Every range eventually breaks, and the longer and cleaner it is, the more violent the break. After several successful edge fades, stop fading — the odds of the next one being a trap rise with each attempt.",
+          },
+        ],
+        quiz: [
+          {
+            question: "In a well-defined range, the highest-probability trade is usually:",
+            options: [
+              "Buying the midpoint",
+              "Selling the midpoint",
+              "Fading the edges — selling resistance, buying support",
+              "Holding a position until the range breaks",
+            ],
+            answer: 2,
+            explanation: "Edges are where the balance of orders lies. Mid-range entries have poor odds and poor reward in both directions.",
+          },
+          {
+            question: "What often precedes a genuine range breakout?",
+            options: [
+              "Price hugging the midpoint for days",
+              "Shrinking candles and fading momentum near one edge",
+              "Huge volume in the middle of the range",
+              "Nothing — breakouts are unpredictable",
+            ],
+            answer: 1,
+            explanation: "Compression near an edge — small bodies, fading pushes — signals the balance is breaking before the level does.",
           },
         ],
       },
@@ -1459,6 +1723,137 @@ export const curriculum: Module[] = [
             ],
             answer: 1,
             explanation: "A strategy must survive its bad months; testing only good ones is self-deception.",
+          },
+        ],
+      },
+      {
+        id: "correlated-exposure-portfolio-risk",
+        title: "Correlated Exposure & Portfolio Risk",
+        summary:
+          "Three long-USD positions is not three trades — it is one big USD trade wearing three costumes. How correlation silently multiplies your risk and how to cap it.",
+        minutes: 8,
+        blocks: [
+          {
+            type: "p",
+            text: "Position sizing rules protect you trade by trade. But when you hold several positions at once, the risk that matters is the risk of the whole book — and correlated pairs turn several 'safe' trades into one dangerous aggregate bet.",
+          },
+          { type: "h2", text: "Hidden correlation" },
+          {
+            type: "list",
+            items: [
+              "EUR/USD, GBP/USD, AUD/USD and NZD/USD all share the US dollar — they move together far more often than not.",
+              "Short EUR/USD and short GBP/USD simultaneously is roughly one large short-dollar trade, not two independent ones.",
+              "Long EUR/USD plus short USD/JPY is double short-USD exposure wearing two tickets.",
+              "Safe-haven flows (JPY, CHF) and risk-off moves can flip normal correlations precisely when you least want it.",
+          ],
+          },
+          {
+            type: "formula",
+            label: "Effective exposure",
+            expression: "Effective risk = Σ (risk per trade × correlation weight)",
+            worked: "$1 risk each on two ~0.85-correlated shorts ≈ $1.85 of one bet, not $2 of two bets",
+            terms: [
+              { symbol: "Risk per trade", meaning: "The R you assigned to each position" },
+              { symbol: "Correlation", meaning: "1 = identical moves, 0 = independent" },
+              { symbol: "Effective risk", meaning: "What your book really has at stake" },
+            ],
+          },
+          {
+            type: "p",
+            text: "The professional fix is a portfolio-level cap. Decide the maximum total risk on any one underlying theme — for example, 2% across all correlated USD positions. If three setups would each risk 1%, take the best two, or cut every size until the book fits the cap.",
+          },
+          {
+            type: "callout",
+            title: "One bet, many tickets",
+            text: "Before adding any position, ask: does this increase a bet I already have? If the answer is yes, it is not diversification — it is doubling, and it must fit inside the same risk budget.",
+          },
+        ],
+        quiz: [
+          {
+            question: "You are short EUR/USD, GBP/USD and AUD/USD simultaneously. Your true exposure is:",
+            options: [
+              "Three independent trades",
+              "Primarily one large short-USD position",
+              "A diversified portfolio",
+              "Zero risk",
+            ],
+            answer: 1,
+            explanation: "All three share the US dollar as the quote currency — the book is effectively one big short-USD bet.",
+          },
+          {
+            question: "Long EUR/USD combined with short USD/JPY gives you:",
+            options: ["A hedge", "Double short-USD exposure", "No USD exposure", "A carry trade"],
+            answer: 1,
+            explanation: "Long EUR/USD is long EUR / short USD; short USD/JPY is also short USD. Both legs bet the same direction on the dollar.",
+          },
+        ],
+      },
+      {
+        id: "journaling-performance-review",
+        title: "Journaling & Performance Review",
+        summary:
+          "The trading journal is your laboratory: the record that turns hundreds of anonymous trades into a handful of setups you can actually trust — and shows you exactly which ones pay you.",
+        minutes: 7,
+        blocks: [
+          {
+            type: "p",
+            text: "Memory is a terrible analyst. It remembers the highlight-reel winners and quietly deletes the rule-breaking losses. A journal replaces memory with data, and data is what lets you improve a system instead of just rotating through them.",
+          },
+          { type: "h2", text: "What every entry needs" },
+          {
+            type: "list",
+            items: [
+              "A screenshot of the chart at entry, with the level and the setup marked.",
+              "The thesis — one or two sentences on why this trade made sense.",
+              "Entry, stop and target prices, plus the risk percentage taken.",
+              "Emotional state: calm, impatient, revenge, FOMO. Be honest — nobody else reads it.",
+              "The outcome and a grade: did you follow the plan, regardless of profit?",
+          ],
+          },
+          {
+            type: "formula",
+            label: "Expectancy",
+            expression: "Expectancy = (Win% × Avg win) − (Loss% × Avg loss)",
+            worked: "40% wins of 2R, 60% losses of 1R → 0.8R − 0.6R = +0.2R per trade",
+            terms: [
+              { symbol: "R", meaning: "Your initial risk — the unit all results are measured in" },
+              { symbol: "Win%", meaning: "Share of winning trades" },
+              { symbol: "Expectancy", meaning: "Average result per trade over many trades" },
+            ],
+          },
+          { type: "h2", text: "The weekly review" },
+          {
+            type: "list",
+            items: [
+              "Group trades by setup — the journal is only useful when it is sliced.",
+              "Find the leak: which setup, session or emotional state produces the losses.",
+              "Change one thing at a time — two variables changed at once teaches you nothing.",
+              "Judge execution separately from outcome: a good trade that lost is still a good trade.",
+            ],
+          },
+          {
+            type: "callout",
+            title: "Data beats feelings",
+            text: "You do not need more signals — you need to know which 20% of your trades pay you. The journal tells you that; your memory will lie to you every single week.",
+          },
+        ],
+        quiz: [
+          {
+            question: "A system wins 40% of the time with an average winner of 2R and an average loser of 1R. Expectancy per trade is:",
+            options: ["−0.2R", "+0.2R", "+0.8R", "Zero"],
+            answer: 1,
+            explanation: "(0.4 × 2R) − (0.6 × 1R) = 0.8R − 0.6R = +0.2R. A 40% win rate is perfectly viable when winners are twice the losers.",
+          },
+          {
+            question: "The main purpose of a trading journal is to:",
+            options: [
+              "Impress other traders",
+              "Replace the need for backtesting entirely",
+              "Show which setups actually make you money",
+              "Track your broker's fees",
+            ],
+            answer: 2,
+            explanation: "Sliced by setup, the journal reveals where the real edge is — and which habits are quietly paying for it.",
           },
         ],
       },
