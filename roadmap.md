@@ -14,4 +14,5 @@
 - [x] Expand curriculum to 12 lessons (4 per school) with quizzes
 - [x] Expand curriculum to 18 lessons (6 per school) with quizzes
 - [x] Expand curriculum to 24 lessons (8 per school) with quizzes
-- [ ] Verify all lessons render and quizzes work (user asked to verify after all lessons are added)
+- [x] Add University school (10 lessons incl. graduation exam) — 40 lessons total
+- [x] Verify all lessons render and quizzes work (verified: 40/40 render, exam scores 6/6)

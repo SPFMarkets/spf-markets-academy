@@ -1859,6 +1859,607 @@ export const curriculum: Module[] = [
       },
     ],
   },
+  {
+    id: "university",
+    title: "University",
+    subtitle: "Professional level & graduation",
+    lessons: [
+      {
+        id: "market-structure-smart-money",
+        title: "Market Structure & Smart Money",
+        summary:
+          "Price moves from liquidity pool to liquidity pool. Learn to read structure the way institutions leave it behind.",
+        minutes: 9,
+        blocks: [
+          {
+            type: "p",
+            text: "Market structure is the skeleton of every chart: a sequence of higher highs and higher lows (uptrend), lower highs and lower lows (downtrend), or a range. A break of structure — price closing beyond the last significant swing — is the market telling you the previous regime is over.",
+          },
+          {
+            type: "p",
+            text: "Smart money concepts describe how large players must trade: they cannot buy 500 million dollars of euros at one price without moving the market, so they engineer moves into areas where retail stop orders cluster. Those clusters — above old highs, below old lows — are liquidity pools.",
+          },
+          { type: "h2", text: "The structure checklist" },
+          {
+            type: "list",
+            items: [
+              "Mark the last three swing highs and lows on the daily chart before looking at anything smaller.",
+              "A break of structure (BOS) continues the trend; a change of character (CHoCH) warns of reversal.",
+              "Order blocks — the last opposite candle before a strong impulsive move — often act as institutional entry zones.",
+              "Fair value gaps (imbalances) are prices the market skipped; price frequently returns to fill them.",
+            ],
+          },
+          {
+            type: "callout",
+            title: "Trade with the footprint",
+            text: "You will never out-muscle institutions, but you can out-wait them. Let them show their hand at a liquidity pool, then trade in the direction of the displacement that follows.",
+          },
+        ],
+        quiz: [
+          {
+            question: "A 'change of character' (CHoCH) in an uptrend is:",
+            options: [
+              "A new higher high",
+              "Price closing below the last significant higher low",
+              "A gap at the market open",
+              "Two consecutive green candles",
+            ],
+            answer: 1,
+            explanation: "In an uptrend the market makes higher lows. When price closes below the most recent one, the structure that defined the trend is broken — the first warning of reversal.",
+          },
+          {
+            question: "Why do institutions target clusters of retail stop orders?",
+            options: [
+              "To punish retail traders",
+              "Stops are market orders that provide the liquidity needed to fill large positions",
+              "Stops move the spread",
+              "They are required to by regulation",
+            ],
+            answer: 1,
+            explanation: "A stop-loss is a resting market order. A cluster of sell stops below a low is a pool of willing sellers — exactly what an institution needs to fill a large buy order.",
+          },
+        ],
+      },
+      {
+        id: "order-flow-liquidity",
+        title: "Order Flow & Liquidity",
+        summary:
+          "Every fill needs a counterparty. Understanding where orders sit explains why price accelerates, stalls and reverses.",
+        minutes: 8,
+        blocks: [
+          {
+            type: "p",
+            text: "Liquidity is the availability of orders at a price. Deep liquidity means large trades execute with little slippage; thin liquidity means even modest orders shove price around. The same pair can be deep at London noon and thin during the Sydney afternoon.",
+          },
+          {
+            type: "p",
+            text: "Order flow is the stream of actual buying and selling. Retail traders cannot see the interbank order book directly, but its shadow is visible on the chart: fast moves through thin areas, grinding moves through dense ones, and sharp rejections where large limit orders sit.",
+          },
+          { type: "h2", text: "Where liquidity hides" },
+          {
+            type: "list",
+            items: [
+              "Equal highs and equal lows — obvious levels where breakout traders and stops cluster.",
+              "Round numbers like 1.1000 or 150.00, where pending orders and options barriers concentrate.",
+              "Session highs and lows, especially the Asian range that London loves to sweep.",
+              "News windows, when liquidity providers pull quotes and spreads widen — thin air both ways.",
+            ],
+          },
+          {
+            type: "callout",
+            title: "The sweep and reverse",
+            text: "One of the highest-probability patterns in forex: price pokes above an obvious high, triggers the stops and breakout buys, then reverses hard. The sweep was the fuel; the reversal is the trade.",
+          },
+        ],
+        quiz: [
+          {
+            question: "Price often spikes just beyond an obvious old high and then reverses because:",
+            options: [
+              "The high is a magic number",
+              "Market makers are confused",
+              "Stops and breakout orders above the high provide liquidity for large sellers",
+              "Spreads are tightest there",
+            ],
+            answer: 2,
+            explanation: "Above an obvious high sit buy stops and breakout orders — a pool of buyers. A large seller fills into that pool, and with the orders consumed, price reverses.",
+          },
+          {
+            question: "Liquidity in a major pair is typically deepest during:",
+            options: [
+              "The Sydney session",
+              "The London–New York overlap",
+              "Weekends",
+              "The Tokyo lunch hour",
+            ],
+            answer: 1,
+            explanation: "The London–New York overlap concentrates the two largest dealing centres in one window — the tightest spreads and deepest order books of the day.",
+          },
+        ],
+      },
+      {
+        id: "kelly-position-sizing-models",
+        title: "Advanced Position Sizing Models",
+        summary:
+          "Fixed fractional sizing is the beginning, not the end. Compare the models professionals use to convert edge into growth.",
+        minutes: 9,
+        blocks: [
+          {
+            type: "p",
+            text: "Risking a fixed 1% per trade is robust and simple, but it ignores the size of your edge. Sizing models exist on a spectrum from conservative (fixed fractional) to aggressive (Kelly criterion), and choosing one is a decision about how much drawdown you can psychologically and financially survive.",
+          },
+          {
+            type: "formula",
+            label: "Kelly criterion",
+            expression: "f* = W − (1 − W) / R",
+            worked: "Win rate 45%, R = 2 → f* = 0.45 − 0.55/2 = 0.175 → 17.5% full Kelly; most traders use ¼ Kelly ≈ 4%",
+            terms: [
+              { symbol: "f*", meaning: "Optimal fraction of capital to risk per trade" },
+              { symbol: "W", meaning: "Historical win rate of the strategy" },
+              { symbol: "R", meaning: "Ratio of average winner to average loser" },
+            ],
+          },
+          {
+            type: "p",
+            text: "Full Kelly maximizes long-run growth but with savage drawdowns — a 50% equity dip is normal, not exceptional. Because your win rate is only an estimate, professionals dilute Kelly heavily or cap risk at a fixed fraction, trading a little growth for a lot of survival.",
+          },
+          {
+            type: "list",
+            items: [
+              "Fixed fractional: risk a constant % of equity — simple, self-correcting after losses.",
+              "Fixed ratio: increase size only after reaching profit milestones — smooths equity curve.",
+              "Kelly / fractional Kelly: size by edge — powerful but unforgiving of bad estimates.",
+              "Volatility targeting: size inversely to recent ATR so every trade carries similar dollar risk.",
+            ],
+          },
+        ],
+        quiz: [
+          {
+            question: "Why do professionals rarely use full Kelly sizing?",
+            options: [
+              "It is illegal for retail accounts",
+              "It produces very deep drawdowns and assumes you know your exact win rate",
+              "It only works on stocks",
+              "It requires a larger account than most have",
+            ],
+            answer: 1,
+            explanation: "Full Kelly is mathematically optimal only if your edge estimate is exact. Real estimates are noisy, so full Kelly routinely produces 50%+ drawdowns — hence half or quarter Kelly.",
+          },
+          {
+            question: "Volatility targeting sizes positions so that:",
+            options: [
+              "Every trade risks the same percentage of a fixed account",
+              "Larger accounts always take larger lots",
+              "Each trade carries similar dollar risk regardless of how wide the stop must be",
+              "You trade more when volatility rises",
+            ],
+            answer: 2,
+            explanation: "When ATR doubles, the stop must be twice as wide — so the position is halved to keep dollar risk constant. Risk stays stable as market conditions change.",
+          },
+        ],
+      },
+      {
+        id: "multi-strategy-portfolios",
+        title: "Running a Multi-Strategy Portfolio",
+        summary:
+          "One strategy has bad months. A portfolio of uncorrelated strategies has bad weeks. Diversification is the only free lunch.",
+        minutes: 8,
+        blocks: [
+          {
+            type: "p",
+            text: "Every strategy has an environment where it loses: trend systems bleed in ranges, mean-reversion systems bleed in trends. Combining strategies whose losing periods do not overlap smooths the equity curve more than improving any single strategy ever will.",
+          },
+          {
+            type: "formula",
+            label: "Portfolio variance",
+            expression: "σ²p = w₁²σ₁² + w₂²σ₂² + 2w₁w₂ρσ₁σ₂",
+            worked: "Two strategies, 8% vol each, 50/50, correlation ρ = 0.2 → portfolio vol ≈ 6.2% — less than either alone",
+            terms: [
+              { symbol: "σp", meaning: "Portfolio volatility" },
+              { symbol: "w", meaning: "Capital weight of each strategy" },
+              { symbol: "ρ", meaning: "Correlation between the strategies' returns" },
+            ],
+          },
+          {
+            type: "p",
+            text: "The key variable is correlation. Two trend systems on EUR/USD and GBP/USD are nearly the same trade. A London breakout system, an Asian range fade and a weekly carry basket genuinely diversify because they earn from different behaviours.",
+          },
+          {
+            type: "callout",
+            title: "Diversify behaviours, not symbols",
+            text: "Ten pairs running one idea is one bet wearing ten costumes. Real diversification comes from different logic, different timeframes and different sessions.",
+          },
+        ],
+        quiz: [
+          {
+            question: "A portfolio of two strategies with 8% volatility each can have lower volatility than either alone when:",
+            options: [
+              "Both strategies trade the same pair",
+              "Their returns are not perfectly correlated",
+              "Both have high win rates",
+              "You use high leverage",
+            ],
+            answer: 1,
+            explanation: "When correlation is below 1, the strategies' losing periods partly offset. The lower the correlation, the bigger the volatility reduction — that's the diversification effect.",
+          },
+          {
+            question: "The best way to diversify a trading portfolio is to combine:",
+            options: [
+              "The same strategy on many correlated pairs",
+              "Strategies with different logic, timeframes and sessions",
+              "Many indicators on one chart",
+              "Several accounts at the same broker",
+            ],
+            answer: 1,
+            explanation: "Diversification works when return streams are driven by different market behaviours — different logic, timeframe and session — not by cloning one idea across correlated symbols.",
+          },
+        ],
+      },
+      {
+        id: "system-design-automation",
+        title: "System Design & Algorithmic Thinking",
+        summary:
+          "Whether or not you ever code a robot, thinking like one makes your manual trading dramatically more consistent.",
+        minutes: 8,
+        blocks: [
+          {
+            type: "p",
+            text: "An algorithm is just a trading plan with zero ambiguity: exact entry conditions, exact exit conditions, exact size. Writing your strategy in that language — even on paper — exposes the vague spots where discretion and emotion were hiding.",
+          },
+          { type: "h2", text: "The specification test" },
+          {
+            type: "list",
+            items: [
+              "Could a stranger execute your strategy from your rules alone, with no chart-reading judgement?",
+              "Is every condition objective? 'Strong momentum' is not; 'close above the 20 EMA with RSI > 55' is.",
+              "Are the exits as precise as the entries? Most plans specify entries in detail and exits in hope.",
+              "What is explicitly out of scope — news windows, sessions, pairs — and is that written down too?",
+            ],
+          },
+          {
+            type: "p",
+            text: "Full automation adds new failure modes — platform outages, bad ticks, over-optimized parameters — so many professionals run a hybrid: algorithms scan and alert, humans approve and manage. The machine does the boring part; the human handles the exceptions.",
+          },
+          {
+            type: "callout",
+            title: "Beware the overfit",
+            text: "A strategy tuned to perfection on past data usually learned the past, not the market. If your backtest has fifteen parameters, you don't have a system — you have a coincidence.",
+          },
+        ],
+        quiz: [
+          {
+            question: "The main benefit of writing your strategy as exact, algorithm-style rules is:",
+            options: [
+              "It guarantees profits",
+              "It removes ambiguity so execution becomes consistent and testable",
+              "It eliminates the need for stop losses",
+              "Brokers give you better spreads",
+            ],
+            answer: 1,
+            explanation: "Precise rules can be followed identically every time and backtested honestly. Vague rules hide discretion, which hides emotion.",
+          },
+          {
+            question: "A backtest with many finely-tuned parameters is dangerous because:",
+            options: [
+              "It runs too slowly",
+              "It may be fitted to past noise rather than a real edge",
+              "It uses too much data",
+              "Indicators stop working",
+            ],
+            answer: 1,
+            explanation: "Every extra parameter is another chance to fit the noise of the sample. Overfit systems look brilliant in the past and fail immediately in the future.",
+          },
+        ],
+      },
+      {
+        id: "macro-central-banks",
+        title: "Macro Trading & Central Banks",
+        summary:
+          "Currencies are priced by interest rate expectations. Learn to read central banks and you read the market's master narrative.",
+        minutes: 9,
+        blocks: [
+          {
+            type: "p",
+            text: "A currency is a share in an economy, and its dividend is the interest rate. Capital flows toward higher and rising rates, so the single most important driver of medium-term exchange rates is the expected path of central bank policy — not the rate today, but the rate the market believes is coming.",
+          },
+          {
+            type: "p",
+            text: "Central banks move markets twice: with the decision and with the language. A rate hold with hawkish guidance can strengthen a currency more than a hike that was fully expected. Traders therefore trade the surprise — the gap between what was priced in and what was delivered.",
+          },
+          { type: "h2", text: "The macro dashboard" },
+          {
+            type: "list",
+            items: [
+              "Inflation (CPI): the number central banks are mandated to control — the master variable.",
+              "Employment reports: strong jobs data supports tighter policy and a stronger currency.",
+              "Rate expectations: tools like rate futures show what the market has priced; trade the gap.",
+              "Yield differentials: the 2-year government bond spread between two countries tracks the pair remarkably well.",
+            ],
+          },
+          {
+            type: "callout",
+            title: "Buy the rumour, sell the fact",
+            text: "If everyone expects a hike, the currency rises into the meeting and often falls when the hike arrives — the news was already in the price. Always ask: what is already priced in?",
+          },
+        ],
+        quiz: [
+          {
+            question: "A central bank holds rates but signals hikes are coming. The currency will most likely:",
+            options: [
+              "Fall, because rates were not raised",
+              "Strengthen, because expected future rates rose",
+              "Stay exactly flat",
+              "Gap down at the next open",
+            ],
+            answer: 1,
+            explanation: "Currencies price expectations, not just current rates. Hawkish guidance raises the expected policy path, attracting capital even without an immediate hike.",
+          },
+          {
+            question: "A fully expected rate hike often causes the currency to fall afterwards because:",
+            options: [
+              "Hikes are bad for currencies",
+              "The hike was already priced in and traders take profit on the news",
+              "Inflation rises after hikes",
+              "The bond market closes",
+            ],
+            answer: 1,
+            explanation: "Markets move on surprises. When the outcome matches what was priced in, there is no new information — just a crowd of positioned traders heading for the exit.",
+          },
+        ],
+      },
+      {
+        id: "hedging-options-basics",
+        title: "Hedging & Options Basics",
+        summary:
+          "Sometimes the best trade is insurance. Hedges and options let you keep a position while capping what it can cost you.",
+        minutes: 8,
+        blocks: [
+          {
+            type: "p",
+            text: "A hedge is a second position that profits when your first position loses. Corporates hedge constantly — an exporter earning euros but paying costs in dollars sells EUR/USD forward to lock in a rate. Speculators use the same tools to survive uncertain windows like elections and central bank meetings.",
+          },
+          {
+            type: "formula",
+            label: "Protective put payoff",
+            expression: "Max loss = (entry − strike) + premium",
+            worked: "Long EUR/USD at 1.1000, buy 1.0900 put for 25 pips → worst case = 100 + 25 = 125 pips, no matter how far price falls",
+            terms: [
+              { symbol: "strike", meaning: "The price at which the option protects you" },
+              { symbol: "premium", meaning: "The cost of the option — the insurance fee" },
+            ],
+          },
+          {
+            type: "p",
+            text: "Options differ from stop losses in one crucial way: they cannot be wicked out. A stop is a market order that fills wherever liquidity exists during a spike; an option is a contract that pays according to the price at expiry. You pay a premium for that certainty.",
+          },
+          {
+            type: "list",
+            items: [
+              "Direct hedge: an offsetting position in the same pair — simple but freezes the P&L.",
+              "Correlated hedge: short GBP/USD against a long EUR/USD — partial protection, keeps some view.",
+              "Protective put: capped downside, unlimited upside, known fixed cost.",
+              "Covered call: sell upside above a target to earn premium — income in exchange for capping gains.",
+            ],
+          },
+        ],
+        quiz: [
+          {
+            question: "The key advantage of a protective put over a stop loss is:",
+            options: [
+              "It is always cheaper",
+              "It pays according to the expiry price and cannot be triggered by a momentary spike",
+              "It removes all trading costs",
+              "It guarantees a profit",
+            ],
+            answer: 1,
+            explanation: "A stop fills at whatever price the spike reaches; an option's payoff is contractual. You pay a premium for protection that a stop hunt cannot take away.",
+          },
+          {
+            question: "An exporter who will receive euros in three months hedges by:",
+            options: [
+              "Buying EUR/USD spot",
+              "Selling EUR/USD forward to lock in today's exchange rate",
+              "Buying calls on EUR/USD",
+              "Doing nothing until the payment arrives",
+            ],
+            answer: 1,
+            explanation: "The exporter is naturally long euros. Selling EUR/USD forward offsets that exposure, converting an unknown future rate into a known one.",
+          },
+        ],
+      },
+      {
+        id: "prop-firms-funded-accounts",
+        title: "Prop Firms & Funded Accounts",
+        summary:
+          "Trade someone else's capital and split the profits. Here is how evaluations really work — and how their rules shape your trading.",
+        minutes: 7,
+        blocks: [
+          {
+            type: "p",
+            text: "Proprietary trading firms let you prove yourself on a simulated evaluation, then trade a funded account and keep a share of profits — typically 70–90%. Your risk is limited to the evaluation fee; the firm's risk is capped by strict rules you must never break.",
+          },
+          { type: "h2", text: "The rules that matter" },
+          {
+            type: "list",
+            items: [
+              "Daily loss limit: often 4–5% — hit it and the account is gone, regardless of overall profit.",
+              "Maximum drawdown: often 8–10%, sometimes trailing on your highest balance — the silent account killer.",
+              "Profit target: typically 8–10% to pass — which tempts traders into over-risking near the line.",
+              "Consistency rules: some firms limit how much of your profit can come from a single day.",
+            ],
+          },
+          {
+            type: "p",
+            text: "The maths of evaluations rewards patience. With a 10% target and a 5% daily limit, the professional approach is to risk 0.5–1% per trade and treat the evaluation as a month-long audition, not a weekend lottery ticket. The fee is tuition; the discipline is the real product.",
+          },
+          {
+            type: "callout",
+            title: "Read the drawdown type",
+            text: "A static 10% drawdown and a trailing 10% drawdown are completely different games. Trailing drawdowns ratchet up with your profits and punish giving back gains — size down as you approach the target.",
+          },
+        ],
+        quiz: [
+          {
+            question: "A trailing maximum drawdown is dangerous because it:",
+            options: [
+              "Only applies to losing traders",
+              "Rises with your peak balance, so giving back profits can breach it even while you're up overall",
+              "Is calculated on weekends",
+              "Reduces your profit split",
+            ],
+            answer: 1,
+            explanation: "A trailing drawdown anchors to your highest balance. Reach +8% and fall back to +3%, and you may breach a 5% trailing limit despite being profitable.",
+          },
+          {
+            question: "The most professional way to pass a 10% profit target with a 5% daily loss limit is to:",
+            options: [
+              "Risk the full 5% daily to finish fast",
+              "Risk small fractions and grind steadily over weeks",
+              "Trade only news events",
+              "Use maximum leverage on one trade",
+            ],
+            answer: 1,
+            explanation: "Small, consistent risk keeps you far from the daily limit and lets edge compound. Evaluations are auditions for discipline — the firms are screening for exactly that.",
+          },
+        ],
+      },
+      {
+        id: "professional-trading-routine",
+        title: "The Professional Trading Routine",
+        summary:
+          "Consistency is scheduled, not summoned. Build the daily and weekly rhythm that turns trading into a business.",
+        minutes: 7,
+        blocks: [
+          {
+            type: "p",
+            text: "Amateurs trade when they feel like it; professionals trade when their plan says to. A routine removes hundreds of small decisions — when to look, what to check, when to stop — so your limited discipline is spent on the trades themselves.",
+          },
+          { type: "h2", text: "A working day, structured" },
+          {
+            type: "list",
+            items: [
+              "Pre-market (30 min): check the economic calendar, mark key levels, write down the scenarios you will trade and the ones you will skip.",
+              "Session window: trade only your defined hours. Outside them, the platform stays closed.",
+              "Post-market (15 min): screenshot every trade, log it in the journal, note one thing done well and one to fix.",
+              "Weekly review (1 hour): compute expectancy by setup, review the journal, set next week's focus.",
+            ],
+          },
+          {
+            type: "p",
+            text: "The routine also defines when not to trade: after a daily loss limit is hit, during illiquid hours, when sleep-deprived or emotional. Professionals protect their mental capital as carefully as their financial capital — both compound.",
+          },
+          {
+            type: "callout",
+            title: "Process goals, not profit goals",
+            text: "You cannot control whether this week pays you; you can control whether you followed the plan. Grade yourself on execution and the profits take care of themselves.",
+          },
+        ],
+        quiz: [
+          {
+            question: "The main purpose of a fixed trading routine is to:",
+            options: [
+              "Guarantee daily profits",
+              "Remove small decisions so discipline is spent on the trades themselves",
+              "Increase the number of trades",
+              "Impress a prop firm",
+            ],
+            answer: 1,
+            explanation: "Decision fatigue is real. A routine automates the when, what and how-long, leaving your willpower for the moments that actually need it.",
+          },
+          {
+            question: "Professionals set goals around:",
+            options: [
+              "A fixed dollar amount per day",
+              "Process and execution quality rather than profit targets",
+              "Number of trades taken",
+              "Hours spent watching charts",
+            ],
+            answer: 1,
+            explanation: "Profit is an outcome you cannot force; execution is a behaviour you control. Grade the behaviour and the outcome follows over a large sample.",
+          },
+        ],
+      },
+      {
+        id: "graduation-exam",
+        title: "Graduation Exam",
+        summary:
+          "Everything from Pre-School to University in one final assessment. Pass this and you have genuinely graduated the SPF Markets academy.",
+        minutes: 15,
+        blocks: [
+          {
+            type: "p",
+            text: "This is the final assessment of the SPF Markets academy. The exam draws on the whole curriculum: market mechanics, position sizing, risk management, psychology, strategy design and professional practice. There is no timer — accuracy is the only currency here.",
+          },
+          {
+            type: "p",
+            text: "Score yourself honestly. Any question you miss points to the lesson worth revisiting before you size up. A trader who can explain why an answer is right owns the knowledge; one who merely recognizes it is renting.",
+          },
+          {
+            type: "callout",
+            title: "The real exam never ends",
+            text: "The market administers a fresh test every session, and it grades in money. Graduation means you now have the framework to keep learning from it safely. Trade small, journal everything, and let the edge compound.",
+          },
+        ],
+        quiz: [
+          {
+            question: "With a $10,000 account risking 1% and a 40-pip stop on EUR/USD, your position size is:",
+            options: ["0.25 lots", "0.5 lots", "1 lot", "2.5 lots"],
+            answer: 0,
+            explanation: "Risk = $100. At $10 per pip per standard lot, $100 ÷ 40 pips = $2.50 per pip = 0.25 lots. Position size always starts from the stop, never from the leverage available.",
+          },
+          {
+            question: "A system wins 35% of trades with 3R winners and 1R losers. Its expectancy is:",
+            options: ["−0.30R", "+0.05R", "+0.40R", "+1.05R"],
+            answer: 2,
+            explanation: "(0.35 × 3R) − (0.65 × 1R) = 1.05R − 0.65R = +0.40R per trade. Low win rates are profitable when winners are much larger than losers.",
+          },
+          {
+            question: "Price sweeps above an obvious old high, then reverses sharply downward. The most likely explanation is:",
+            options: [
+              "A data error on your chart",
+              "Stops and breakout orders above the high provided liquidity for large sellers",
+              "The trend is now confirmed upward",
+              "The spread narrowed",
+            ],
+            answer: 1,
+            explanation: "The cluster of buy stops above the high is a liquidity pool. Large sellers filled into it, and with those orders consumed, price reversed — the classic sweep and reverse.",
+          },
+          {
+            question: "A central bank delivers a fully expected rate hike and the currency falls. This is best explained by:",
+            options: [
+              "Hikes weaken currencies",
+              "The hike was already priced in and positioned traders took profit",
+              "Inflation must be falling",
+              "The bond market disagreed",
+            ],
+            answer: 1,
+            explanation: "Markets move on the gap between expectation and reality. A fully priced hike contains no surprise, so the crowd that bought the rumour sells the fact.",
+          },
+          {
+            question: "The strongest reason to combine a trend system with a mean-reversion system is:",
+            options: [
+              "It doubles your leverage",
+              "Their losing periods occur in different market conditions, smoothing the equity curve",
+              "It eliminates the need for stops",
+              "It guarantees a profit every month",
+            ],
+            answer: 1,
+            explanation: "Trend systems lose in ranges; mean-reversion systems lose in trends. Because their drawdowns rarely coincide, the combined equity curve is smoother than either alone.",
+          },
+          {
+            question: "After three consecutive losses, the professional response is to:",
+            options: [
+              "Double size to recover quickly",
+              "Stop trading for the day and review whether execution matched the plan",
+              "Switch to a new strategy immediately",
+              "Move stops wider to avoid being stopped again",
+            ],
+            answer: 1,
+            explanation: "Losses in clusters are statistically normal even for good systems. The professional protects mental and financial capital, then audits execution — revenge sizing is how accounts die.",
+          },
+        ],
+      },
+    ],
+  },
 ];
 
 export const allLessons = curriculum.flatMap((m) =>
