@@ -2460,6 +2460,602 @@ export const curriculum: Module[] = [
       },
     ],
   },
+  {
+    id: "graduate-school",
+    title: "Graduate School",
+    subtitle: "Mastery, capital & the capstone",
+    lessons: [
+      {
+        id: "edge-expectancy-mastery",
+        title: "Edge, Expectancy & the Law of Large Numbers",
+        summary:
+          "An edge is not a winning trade — it is a positive average over hundreds of trades. Here is the maths that separates gamblers from professionals.",
+        minutes: 9,
+        blocks: [
+          {
+            type: "p",
+            text: "Every professional edge reduces to one number: expectancy — the average amount you expect to make per trade, expressed in R. A positive expectancy, executed consistently over a large sample, is the entire business. Everything else is refinement.",
+          },
+          {
+            type: "formula",
+            label: "Expectancy",
+            expression: "E = (Win% × Avg Win) − (Loss% × Avg Loss)",
+            worked: "Win 45%, avg win 1.8R, loss 55% at 1R → E = 0.81R − 0.55R = +0.26R per trade",
+            terms: [
+              { symbol: "E", meaning: "Expected profit per trade, in multiples of risk (R)" },
+              { symbol: "R", meaning: "The amount risked on one trade" },
+            ],
+          },
+          {
+            type: "p",
+            text: "The law of large numbers is why sample size dominates everything. Over 10 trades, a +0.26R edge can easily show a loss; over 500 trades, it almost cannot. Professionals therefore think in quarters and hundreds of trades, never in days.",
+          },
+          {
+            type: "callout",
+            title: "The only question that matters",
+            text: "Not 'will this trade win?' but 'is my expectancy positive, and am I executing it faithfully?' The first question is noise. The second is the business.",
+          },
+        ],
+        quiz: [
+          {
+            question: "A strategy with 40% win rate, 2.5R average win and 1R average loss has expectancy:",
+            options: ["−0.10R", "+0.40R", "+0.60R", "+1.00R"],
+            answer: 1,
+            explanation: "(0.40 × 2.5R) − (0.60 × 1R) = 1.00R − 0.60R = +0.40R. A minority win rate still earns strongly when winners dwarf losers.",
+          },
+          {
+            question: "Why does a positive-expectancy trader still lose over small samples?",
+            options: [
+              "The edge disappears randomly",
+              "Variance dominates over few trades; the edge only asserts itself over large samples",
+              "Brokers widen spreads",
+              "Expectancy only works on demo",
+            ],
+            answer: 1,
+            explanation: "Expectancy is an average. Over 10 trades, luck swamps it; over 500, luck cancels out and the edge is what remains.",
+          },
+        ],
+      },
+      {
+        id: "drawdown-recovery-maths",
+        title: "Drawdown & Recovery Mathematics",
+        summary:
+          "Losses compound against you asymmetrically. Knowing the recovery maths explains why capital preservation outranks everything.",
+        minutes: 8,
+        blocks: [
+          {
+            type: "p",
+            text: "A loss and a gain of the same percentage do not cancel. Lose 10% and you need 11.1% to recover; lose 50% and you need 100%. The deeper the hole, the steeper the climb — which is why professionals treat drawdown control as their primary job.",
+          },
+          {
+            type: "formula",
+            label: "Recovery requirement",
+            expression: "Gain needed = DD / (1 − DD)",
+            worked: "20% drawdown → 0.20 / 0.80 = 25% gain needed just to break even",
+            terms: [
+              { symbol: "DD", meaning: "Drawdown as a decimal (20% = 0.20)" },
+            ],
+          },
+          {
+            type: "list",
+            items: [
+              "10% drawdown needs +11.1% to recover — manageable.",
+              "25% drawdown needs +33% — a strong quarter's work.",
+              "50% drawdown needs +100% — most accounts never come back.",
+              "75% drawdown needs +300% — functionally game over.",
+            ],
+          },
+          {
+            type: "p",
+            text: "This asymmetry is the mathematical foundation of every rule in this academy: small fixed risk, daily loss limits, and size reductions during losing streaks all exist to keep you on the shallow end of the recovery curve.",
+          },
+        ],
+        quiz: [
+          {
+            question: "After a 30% drawdown, the gain required to return to break-even is approximately:",
+            options: ["30%", "37%", "43%", "60%"],
+            answer: 2,
+            explanation: "0.30 / 0.70 ≈ 42.9%. Recovery is always steeper than the fall — the asymmetry grows worse the deeper the drawdown.",
+          },
+          {
+            question: "The recovery maths implies that a trader's first priority is:",
+            options: [
+              "Maximizing winners",
+              "Keeping drawdowns shallow, because deep losses demand disproportionate gains",
+              "Trading more pairs",
+              "Increasing leverage after losses",
+            ],
+            answer: 1,
+            explanation: "Because recovery requirements accelerate with depth, avoiding deep drawdowns is worth more than any amount of upside chasing.",
+          },
+        ],
+      },
+      {
+        id: "risk-of-ruin",
+        title: "Risk of Ruin & Survival",
+        summary:
+          "Even a profitable system can go broke if it risks too much per trade. Ruin is a probability — learn to keep it at zero.",
+        minutes: 8,
+        blocks: [
+          {
+            type: "p",
+            text: "Risk of ruin is the probability that your account hits an unrecoverable level before your edge has time to work. It depends on three things: your win rate, your payoff ratio, and the fraction of capital you risk per trade. Only the last one is fully under your control.",
+          },
+          {
+            type: "p",
+            text: "With a 45% win rate and 2R winners, risking 10% per trade carries a meaningful chance of a 15-loss streak across a career — that is ruin. Risking 1% per trade, the same streak costs 15% of the account: painful, recoverable, business as usual.",
+          },
+          {
+            type: "formula",
+            label: "Losing streak probability",
+            expression: "P(streak of k) ≈ N × (1 − W)^k",
+            worked: "500 trades, W = 45%, k = 8 → 500 × 0.55⁸ ≈ 4.2 → expect roughly four 8-loss streaks per 500 trades",
+            terms: [
+              { symbol: "N", meaning: "Number of trades in the sample" },
+              { symbol: "W", meaning: "Win rate" },
+              { symbol: "k", meaning: "Streak length" },
+            ],
+          },
+          {
+            type: "callout",
+            title: "Size for the streak you will get",
+            text: "Over a career you will meet the 8, 10, even 12-loss streak. Your per-trade risk must be small enough that the worst plausible streak is an inconvenience, not an ending.",
+          },
+        ],
+        quiz: [
+          {
+            question: "Over 500 trades with a 45% win rate, an 8-loss streak is:",
+            options: [
+              "Impossible if the system has an edge",
+              "Statistically expected — it will likely happen several times",
+              "Proof the broker is hunting stops",
+              "A sign to double position size",
+            ],
+            answer: 1,
+            explanation: "500 × 0.55⁸ ≈ 4 expected occurrences. Long losing streaks are a mathematical certainty over large samples — survival must be designed for them.",
+          },
+          {
+            question: "The single most effective way to reduce risk of ruin is to:",
+            options: [
+              "Raise the win rate",
+              "Reduce the fraction of capital risked per trade",
+              "Trade more often",
+              "Use tighter stops",
+            ],
+            answer: 1,
+            explanation: "Win rate and payoff are properties of the market and your edge; risk per trade is a dial you control directly, and it dominates the ruin calculation.",
+          },
+        ],
+      },
+      {
+        id: "equity-curve-management",
+        title: "Equity Curve Management",
+        summary:
+          "Your account balance is itself a chart. Trade it with the same discipline you trade the market.",
+        minutes: 7,
+        blocks: [
+          {
+            type: "p",
+            text: "Plot your account balance after every trade and you get an equity curve — a chart of your own performance. Like any chart it trends, ranges and corrects, and like any chart it can be analysed to decide when to press and when to protect.",
+          },
+          {
+            type: "h2",
+            text: "The professional playbook",
+          },
+          {
+            type: "list",
+            items: [
+              "Track the curve's own drawdown: when your equity is below its recent peak, you are in a personal drawdown regime.",
+              "De-risk rule: after a defined drawdown (say 6%), cut risk per trade in half until a new equity high.",
+              "Re-risk rule: restore full size only after the curve recovers — never mid-drawdown out of impatience.",
+              "Strategy audit: if the drawdown exceeds the worst backtested drawdown, stop and investigate — the edge may have changed.",
+            ],
+          },
+          {
+            type: "p",
+            text: "This creates a feedback loop that automatically bets more when you are in sync with the market and less when you are not — the same logic as trend following, applied to yourself.",
+          },
+        ],
+        quiz: [
+          {
+            question: "The 'de-risk rule' says that after a defined account drawdown you should:",
+            options: [
+              "Increase size to recover faster",
+              "Cut risk per trade until the equity curve makes a new high",
+              "Stop trading permanently",
+              "Switch to a different broker",
+            ],
+            answer: 1,
+            explanation: "Halving risk during drawdowns slows the bleed while you diagnose, and automatically re-leverages only when performance recovers.",
+          },
+          {
+            question: "A drawdown deeper than anything in your backtest most likely means:",
+            options: [
+              "Nothing — drawdowns are random",
+              "The strategy's edge or the market regime may have changed, and trading should pause for review",
+              "You should widen your stops",
+              "You need more indicators",
+            ],
+            answer: 1,
+            explanation: "The backtest defines what 'normal' looks like. Exceeding its worst drawdown is evidence something structural has changed — the correct response is investigation, not more risk.",
+          },
+        ],
+      },
+      {
+        id: "scaling-capital-growth",
+        title: "Scaling Up: From Small Account to Serious Capital",
+        summary:
+          "Growing capital is a staircase, not an elevator. How and when to increase size without breaking your psychology.",
+        minutes: 8,
+        blocks: [
+          {
+            type: "p",
+            text: "Doubling your account by trading is slow; doubling it by depositing savings is fast. For most traders, the realistic path is a hybrid: trade a proven edge for percentage returns while adding external capital, and let compounding do the heavy lifting over years.",
+          },
+          {
+            type: "formula",
+            label: "Compound growth",
+            expression: "Final = Start × (1 + r)^n",
+            worked: "$10,000 at 3% per month for 24 months → 10,000 × 1.03²⁴ ≈ $20,328 — before any deposits",
+            terms: [
+              { symbol: "r", meaning: "Return per period" },
+              { symbol: "n", meaning: "Number of periods" },
+            ],
+          },
+          {
+            type: "p",
+            text: "Size increases should be scheduled, not emotional. A common rule: raise risk in fixed steps only after each new equity milestone, and never by more than 25% at a time. Sudden size jumps create psychological pressure that distorts execution precisely when the stakes feel highest.",
+          },
+          {
+            type: "callout",
+            title: "The 1% stays 1%",
+            text: "Scaling up means the account grows — the risk percentage does not. 1% of a growing account compounds beautifully; 3% because you feel confident is how grown accounts die.",
+          },
+        ],
+        quiz: [
+          {
+            question: "The safest way to increase position size as the account grows is to:",
+            options: [
+              "Double size after every winning week",
+              "Raise size in small scheduled steps at equity milestones, keeping risk percentage constant",
+              "Risk more whenever confidence is high",
+              "Increase leverage instead",
+            ],
+            answer: 1,
+            explanation: "Scheduled, modest steps keep psychology stable and keep the risk fraction — the thing that controls ruin — unchanged.",
+          },
+          {
+            question: "$10,000 compounding at 3% per month reaches roughly $20,000 in about:",
+            options: ["6 months", "12 months", "24 months", "60 months"],
+            answer: 2,
+            explanation: "1.03²⁴ ≈ 2.03. Modest monthly returns double capital in about two years — compounding rewards patience far more than aggression.",
+          },
+        ],
+      },
+      {
+        id: "taxes-records-business",
+        title: "Trading as a Business: Records, Taxes & Structure",
+        summary:
+          "The moment trading pays you, it becomes a business. Set up the boring infrastructure before you need it.",
+        minutes: 7,
+        blocks: [
+          {
+            type: "p",
+            text: "Trading profits are taxable in virtually every jurisdiction, and the rules differ wildly — capital gains, income tax, spread-betting exemptions, and local reporting requirements. This lesson cannot give tax advice; it can tell you to get professional advice early, because retrofitting compliance is always more expensive.",
+          },
+          {
+            type: "h2",
+            text: "The business infrastructure",
+          },
+          {
+            type: "list",
+            items: [
+              "Dedicated accounts: separate trading capital from living money, and never mix them.",
+              "Complete records: every trade, deposit and withdrawal exported monthly — brokers purge history.",
+              "A monthly P&L statement: revenue, costs (spreads, swaps, fees, data), net result.",
+              "An emergency fund outside the trading account: never let living expenses depend on next month's trades.",
+            ],
+          },
+          {
+            type: "p",
+            text: "Treat withdrawals as a salary policy, not a mood. Many professionals withdraw a fixed percentage of monthly profit and compound the rest — a rule that converts trading from a slot machine into an income stream.",
+          },
+        ],
+        quiz: [
+          {
+            question: "The most important reason to keep trading capital in a dedicated account is:",
+            options: [
+              "Brokers require it",
+              "It separates risk capital from living money and keeps records clean",
+              "It increases leverage",
+              "It avoids all taxes",
+            ],
+            answer: 1,
+            explanation: "Separation protects your life from your trading and your trading from your life — and makes tax-time accounting trivial instead of forensic.",
+          },
+          {
+            question: "A professional withdrawal policy typically means:",
+            options: [
+              "Withdrawing everything after any winning day",
+              "Never withdrawing",
+              "Withdrawing a fixed share of monthly profit while compounding the rest",
+              "Withdrawing only after losses",
+            ],
+            answer: 2,
+            explanation: "A fixed rule — say 50% of monthly profit — pays you an income while the retained half compounds. Emotion-based withdrawals break both goals.",
+          },
+        ],
+      },
+      {
+        id: "choosing-markets-beyond-forex",
+        title: "Beyond Forex: Indices, Metals & Commodities",
+        summary:
+          "Everything you have learned transfers. Here is what changes when you trade gold, oil and stock indices.",
+        minutes: 8,
+        blocks: [
+          {
+            type: "p",
+            text: "The skills are portable — risk management, structure, position sizing and psychology apply to every liquid market. What changes is the personality of the instrument: its volatility, its drivers, its sessions and its contract specifications.",
+          },
+          {
+            type: "list",
+            items: [
+              "Gold (XAU/USD): larger daily ranges than major pairs, driven by real yields and risk sentiment; size down accordingly.",
+              "Indices (US30, NAS100): trend cleanly during the cash session, gap at the open, and punish overnight leverage.",
+              "Oil (WTI/Brent): violent around inventory data and OPEC headlines; wide stops or no trade.",
+              "Crypto: 24/7, thin weekend liquidity, and tail risk that dwarfs forex — half the size you think is right.",
+            ],
+          },
+          {
+            type: "formula",
+            label: "Volatility-adjusted size",
+            expression: "Size ∝ 1 / ATR",
+            worked: "If gold's ATR is 3× EUR/USD's, the same dollar risk means roughly one-third the position size",
+            terms: [
+              { symbol: "ATR", meaning: "Average True Range — the instrument's typical daily movement" },
+            ],
+          },
+          {
+            type: "callout",
+            title: "One new market at a time",
+            text: "Each instrument has its own rhythm and its own traps. Master one addition fully — a hundred trades minimum — before adding another.",
+          },
+        ],
+        quiz: [
+          {
+            question: "When moving from EUR/USD to gold, the first adjustment should be:",
+            options: [
+              "Use the same lot size",
+              "Reduce position size to match gold's larger volatility for the same dollar risk",
+              "Remove the stop loss",
+              "Only trade at night",
+            ],
+            answer: 1,
+            explanation: "Dollar risk stays constant; size adapts to the instrument's ATR. Gold moves several times further per day than a major pair, so size shrinks accordingly.",
+          },
+          {
+            question: "Stock indices are particularly dangerous for leveraged overnight positions because they:",
+            options: [
+              "Close on weekends only",
+              "Can gap at the open straight through stop losses",
+              "Have no trends",
+              "Are not liquid",
+            ],
+            answer: 1,
+            explanation: "Indices gap between sessions. A stop is a market order — if price opens beyond it, you fill at the open, not at your stop.",
+          },
+        ],
+      },
+      {
+        id: "mentorship-continuous-learning",
+        title: "Continuous Learning & Avoiding the Guru Trap",
+        summary:
+          "Your education continues after graduation — but the industry sells more dreams than edges. Learn to tell the difference.",
+        minutes: 7,
+        blocks: [
+          {
+            type: "p",
+            text: "The trading education industry monetizes hope. Red flags are consistent: guaranteed returns, lifestyle marketing, signals without verified track records, and courses that teach entries but never risk. A mentor who will not discuss losing streaks and drawdowns is selling a story, not a skill.",
+          },
+          {
+            type: "h2",
+            text: "A healthy learning diet",
+          },
+          {
+            type: "list",
+            items: [
+              "Your own journal remains the best teacher — it is data about you, not about someone else's highlight reel.",
+              "Books and research papers age better than social media; favour sources that discuss risk and failure openly.",
+              "Verified, audited track records are the only proof that matters — screenshots are not verification.",
+              "Community helps for accountability, not for trade ideas; borrowing someone else's conviction fails exactly when you need it most.",
+            ],
+          },
+          {
+            type: "callout",
+            title: "The graduation mindset",
+            text: "You now know enough to evaluate any new idea yourself: does it have a measurable edge, defined risk, and a survivable drawdown? If a strategy cannot answer those three questions, it is entertainment.",
+          },
+        ],
+        quiz: [
+          {
+            question: "The clearest red flag in trading education is:",
+            options: [
+              "A focus on risk management",
+              "Promises of guaranteed or effortless returns without a verified track record",
+              "A long course",
+              "A high price",
+            ],
+            answer: 1,
+            explanation: "Markets guarantee nothing. Anyone promising certainty is selling hope — legitimate educators lead with risk, drawdowns and verified results.",
+          },
+          {
+            question: "The single best source of feedback for a developing trader is:",
+            options: [
+              "A signal group",
+              "Their own trade journal and statistics",
+              "Social media sentiment",
+              "A more expensive course",
+            ],
+            answer: 1,
+            explanation: "Your journal is verified data about your actual execution. Everything else is someone else's opinion or marketing.",
+          },
+        ],
+      },
+      {
+        id: "capstone-trading-plan",
+        title: "Capstone: Your Complete Trading Plan",
+        summary:
+          "Assemble everything into one document — the plan you will actually trade. This is the deliverable of the entire academy.",
+        minutes: 12,
+        blocks: [
+          {
+            type: "p",
+            text: "A trading plan is a written contract with yourself, drafted when calm and consulted when emotional. If it is not written down, it does not exist. This capstone assembles every lesson of the academy into a single working document.",
+          },
+          {
+            type: "h2",
+            text: "The ten sections of a complete plan",
+          },
+          {
+            type: "list",
+            items: [
+              "1. Markets & instruments: exactly which pairs or markets, and why.",
+              "2. Sessions & schedule: the hours you trade and the hours you never trade.",
+              "3. Setups: the objective entry conditions, written precisely enough for a stranger to execute.",
+              "4. Risk per trade: the fixed fraction, and the maximum number of concurrent positions.",
+              "5. Daily & weekly loss limits: the numbers that end your day and your week.",
+              "6. Exits: targets, stops, and management rules for every scenario — before entry.",
+              "7. News policy: what you do around red-folder events, in writing.",
+              "8. Drawdown protocol: the de-risk rule and the audit trigger from your backtest.",
+              "9. Review cadence: daily journal, weekly stats, monthly P&L.",
+              "10. Scaling & withdrawal policy: how size grows and how profits are paid out.",
+            ],
+          },
+          {
+            type: "callout",
+            title: "Write it before you need it",
+            text: "Draft the plan this week, trade it on demo for a month, then go live small. The plan is not a cage — it is the difference between having a business and having a hobby that invoices you.",
+          },
+        ],
+        quiz: [
+          {
+            question: "A trading plan's most important property is that it is:",
+            options: [
+              "Complicated",
+              "Written down in advance, so it can be followed when emotions run high",
+              "Kept secret",
+              "Changed weekly",
+            ],
+            answer: 1,
+            explanation: "The plan's value is precisely that it was decided calmly. An unwritten plan rewrites itself under pressure — which is no plan at all.",
+          },
+          {
+            question: "Which of these does NOT belong in a complete trading plan?",
+            options: [
+              "Daily loss limits",
+              "Exact exit rules for every scenario",
+              "A guarantee of monthly profit",
+              "A drawdown de-risking protocol",
+            ],
+            answer: 2,
+            explanation: "Plans define behaviour, not outcomes. Profit is the market's decision; risk, schedule and process are yours.",
+          },
+        ],
+      },
+      {
+        id: "final-capstone-exam",
+        title: "Final Capstone Examination",
+        summary:
+          "The last exam of the academy — eight questions spanning all five schools. Pass this and you have truly graduated SPF Markets.",
+        minutes: 20,
+        blocks: [
+          {
+            type: "p",
+            text: "This is it — the final examination of the SPF Markets academy. Eight questions drawn from all five schools: market mechanics, sizing, risk, psychology, strategy, macro and professional practice. No timer. Answer from understanding, not memory.",
+          },
+          {
+            type: "p",
+            text: "Whatever you score, you now own a complete framework: how the market works, how to size and protect positions, how to build and test an edge, and how to run trading as a business. The market will keep examining you every session — you now have the tools to keep passing.",
+          },
+          {
+            type: "callout",
+            title: "From all of us at SPF Markets",
+            text: "Congratulations on reaching the final. Trade small, journal everything, respect the drawdown maths, and let compounding do what compounding does. Class dismissed — and welcome to the profession.",
+          },
+        ],
+        quiz: [
+          {
+            question: "In GBP/JPY, the base currency is:",
+            options: ["JPY", "GBP", "Both equally", "Whichever is stronger"],
+            answer: 1,
+            explanation: "The first currency in any pair is the base; the second is the quote. You are buying or selling GBP, priced in JPY.",
+          },
+          {
+            question: "Risking 1% of a $20,000 account with a 50-pip stop means a position size of:",
+            options: ["0.2 lots", "0.4 lots", "1 lot", "2 lots"],
+            answer: 1,
+            explanation: "Risk = $200. At $10/pip per standard lot: $200 ÷ 50 pips = $4/pip = 0.4 lots. Size always derives from the stop distance.",
+          },
+          {
+            question: "A 50% drawdown requires what gain to recover?",
+            options: ["50%", "75%", "100%", "150%"],
+            answer: 2,
+            explanation: "0.50 / 0.50 = 100%. The asymmetry of recovery is why shallow drawdowns are the first commandment of risk management.",
+          },
+          {
+            question: "Expectancy of a system winning 50% at 1.5R and losing 50% at 1R is:",
+            options: ["0R", "+0.25R", "+0.50R", "+0.75R"],
+            answer: 1,
+            explanation: "(0.5 × 1.5R) − (0.5 × 1R) = 0.75R − 0.50R = +0.25R per trade — a solid professional edge.",
+          },
+          {
+            question: "Price sweeps below an obvious old low, then rallies hard. This pattern is best read as:",
+            options: [
+              "A confirmed downtrend",
+              "Sell stops below the low providing liquidity for large buyers — a sweep and reverse",
+              "A broker glitch",
+              "Random noise to ignore",
+            ],
+            answer: 1,
+            explanation: "The cluster of sell stops under the low is fuel. Large buyers filled into it, the selling was absorbed, and price reversed.",
+          },
+          {
+            question: "A fully expected central bank hike usually moves the currency:",
+            options: [
+              "Up sharply, because hikes are bullish",
+              "Little or down, because the news was already priced in",
+              "Exactly 1%",
+              "Sideways for a month",
+            ],
+            answer: 1,
+            explanation: "Markets price expectations. No surprise means no new information — and positioned traders taking profit can push the currency down on 'good' news.",
+          },
+          {
+            question: "The best reason to combine a trend system with a range system is:",
+            options: [
+              "It doubles leverage",
+              "Their losing periods occur in opposite market conditions, smoothing returns",
+              "It removes the need for stops",
+              "It guarantees monthly profit",
+            ],
+            answer: 1,
+            explanation: "Uncorrelated strategies draw down at different times. Diversification of behaviour is the only free lunch in trading.",
+          },
+          {
+            question: "After a losing streak that exceeds your backtest's worst drawdown, the professional response is:",
+            options: [
+              "Double size to recover",
+              "Pause, cut risk, and audit whether the edge or the regime has changed",
+              "Change brokers",
+              "Trade more pairs to diversify instantly",
+            ],
+            answer: 1,
+            explanation: "Exceeding the backtested maximum drawdown is evidence, not bad luck. The response is investigation at reduced risk — never aggression.",
+          },
+        ],
+      },
+    ],
+  },
 ];
 
 export const allLessons = curriculum.flatMap((m) =>
