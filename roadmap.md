@@ -16,4 +16,5 @@
 - [x] Expand curriculum to 24 lessons (8 per school) with quizzes
 - [x] Add University school (10 lessons incl. graduation exam) — 40 lessons total
 - [x] Verify all lessons render and quizzes work (verified: 40/40 render, exam scores 6/6)
-- [ ] Add Graduate School (final school) with capstone exam, then re-verify
+- [x] Add Graduate School (10 lessons incl. final capstone exam) — 50 lessons, 5 schools
+- [x] Full curriculum verification: 50/50 lessons render with quizzes, capstone exam scores 8/8, no page errors
