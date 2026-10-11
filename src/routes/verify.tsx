@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { z } from "zod";
 import { BadgeCheck, ShieldX, Search } from "lucide-react";
@@ -38,7 +38,10 @@ function VerifyPage() {
     void navigate({ search: { cert: no.trim().toUpperCase() }, replace: true });
   };
 
-  if (cert && result === null && !busy) void check(cert);
+  useEffect(() => {
+    if (cert) void check(cert);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <main className="min-h-screen bg-background px-5 py-16 text-foreground">
