@@ -14,6 +14,27 @@ export type Database = {
   }
   public: {
     Tables: {
+      certificates: {
+        Row: {
+          cert_number: string
+          graduate_name: string
+          issued_at: string
+          user_id: string
+        }
+        Insert: {
+          cert_number: string
+          graduate_name: string
+          issued_at?: string
+          user_id: string
+        }
+        Update: {
+          cert_number?: string
+          graduate_name?: string
+          issued_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       profiles: {
         Row: {
           created_at: string
@@ -89,12 +110,28 @@ export type Database = {
         }
         Returns: boolean
       }
+      issue_certificate: {
+        Args: { _name: string }
+        Returns: {
+          cert_number: string
+          graduate_name: string
+          issued_at: string
+        }[]
+      }
       lesson_stats: {
         Args: never
         Returns: {
           avg_score: number
           completions: number
           lesson_id: string
+        }[]
+      }
+      verify_certificate: {
+        Args: { _cert: string }
+        Returns: {
+          cert_number: string
+          graduate_name: string
+          issued_at: string
         }[]
       }
     }
