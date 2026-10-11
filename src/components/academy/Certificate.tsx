@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { Award, Download, Lock } from "lucide-react";
-import { certificateId, downloadCertificate } from "@/lib/certificate";
+import { downloadCertificate } from "@/lib/certificate";
+import { supabase } from "@/integrations/supabase/client";
 
 type Props = {
   unlocked: boolean;
@@ -19,12 +20,26 @@ export function Certificate({ unlocked, signedIn, defaultName, userSeed }: Props
     month: "long",
     year: "numeric",
   });
-  const certId = certificateId(userSeed || name || "graduate");
+  const [certId, setCertId] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
+  void userSeed;
 
   const download = async () => {
     setBusy(true);
+    setError(null);
     try {
-      await downloadCertificate({ name: name.trim() || "SPF Graduate", date, certId });
+      const { data, error: err } = await supabase.rpc("issue_certificate", {
+        _name: name.trim() || "SPF Graduate",
+      });
+      const row = data?.[0];
+      if (err || !row) throw new Error(err?.message ?? "Could not issue certificate");
+      setCertId(row.cert_number);
+      const issued = new Date(row.issued_at).toLocaleDateString("en-GB", {
+        day: "numeric", month: "long", year: "numeric",
+      });
+      await downloadCertificate({ name: row.graduate_name, date: issued, certId: row.cert_number });
+    } catch (e) {
+      setError(e instanceof Error ? e.message : "Something went wrong");
     } finally {
       setBusy(false);
     }
@@ -73,8 +88,11 @@ export function Certificate({ unlocked, signedIn, defaultName, userSeed }: Props
             </div>
 
             <p className="mt-4 font-mono text-[11px] text-muted-foreground">
-              Certificate No. {certId} · {date}
+              {certId ? <>Certificate No. {certId} · {date} · </> : null}
+              Anyone can confirm it at{" "}
+              <Link to="/verify" className="text-gold hover:underline">/verify</Link>
             </p>
+            {error && <p className="mt-2 text-[13px] text-destructive">{error}</p>}
           </>
         ) : (
           <div className="flex items-start gap-4">
