@@ -193,7 +193,7 @@ function Academy() {
               unlocked={completed.length >= allLessons.length}
               signedIn={!!user}
               defaultName={
-                (user?.user_metadata?.display_name as string | undefined) ??
+                (user?.user_metadata?.["display_name"] as string | undefined) ??
                 user?.email?.split("@")[0] ??
                 ""
               }
