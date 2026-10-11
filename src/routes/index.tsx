@@ -6,6 +6,7 @@ import { Sidebar } from "@/components/academy/Sidebar";
 import { FormulaBlock } from "@/components/academy/FormulaBlock";
 import { DerivCta } from "@/components/academy/DerivCta";
 import { Quiz } from "@/components/academy/Quiz";
+import { Certificate } from "@/components/academy/Certificate";
 import { allLessons } from "@/data/curriculum";
 import { supabase } from "@/integrations/supabase/client";
 import { useSession } from "@/hooks/useSession";
@@ -186,6 +187,19 @@ function Academy() {
           <DerivCta lessonTitle={lesson.title} />
 
           <Quiz lessonId={lesson.id} questions={lesson.quiz} onComplete={markComplete} />
+
+          {lesson.id === "final-capstone-exam" && (
+            <Certificate
+              unlocked={completed.length >= allLessons.length}
+              signedIn={!!user}
+              defaultName={
+                (user?.user_metadata?.display_name as string | undefined) ??
+                user?.email?.split("@")[0] ??
+                ""
+              }
+              userSeed={user?.id ?? ""}
+            />
+          )}
 
           <nav className="mt-12 flex items-center justify-between gap-4 border-t border-border pt-6 text-[13px]">
             {prev ? (

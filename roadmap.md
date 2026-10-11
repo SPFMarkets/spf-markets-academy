@@ -18,3 +18,4 @@
 - [x] Verify all lessons render and quizzes work (verified: 40/40 render, exam scores 6/6)
 - [x] Add Graduate School (10 lessons incl. final capstone exam) — 50 lessons, 5 schools
 - [x] Full curriculum verification: 50/50 lessons render with quizzes, capstone exam scores 8/8, no page errors
+- [ ] Downloadable graduation certificate (PNG) unlocked after all 50 lessons + capstone — verify
