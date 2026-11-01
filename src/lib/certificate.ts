@@ -1,3 +1,4 @@
+import QRCode from "qrcode";
 import logoUrl from "@/assets/spf-logo.png";
 
 const NAVY = "#0d1526";
