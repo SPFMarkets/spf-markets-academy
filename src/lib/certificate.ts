@@ -137,7 +137,7 @@ export async function renderCertificate(
   try {
     const verifyUrl = `${window.location.origin}/verify?cert=${encodeURIComponent(opts.certId)}`;
     const qrData = await QRCode.toDataURL(verifyUrl, {
-      margin: 0,
+      margin: 2,
       width: QR_SIZE * 3,
       color: { dark: NAVY, light: GOLD_SOFT },
       errorCorrectionLevel: "M",
