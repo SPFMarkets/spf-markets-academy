@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "@tanstack/react-router";
-import { Award, Download, Lock } from "lucide-react";
-import { downloadCertificate } from "@/lib/certificate";
+import { Award, Download, FileDown, Lock } from "lucide-react";
+import { downloadCertificate, downloadCertificatePdf } from "@/lib/certificate";
 import { supabase } from "@/integrations/supabase/client";
 
 type Props = {
@@ -45,6 +45,27 @@ export function Certificate({ unlocked, signedIn, defaultName, userSeed }: Props
     }
   };
 
+  const downloadPdf = async () => {
+    setBusy(true);
+    setError(null);
+    try {
+      const { data, error: err } = await supabase.rpc("issue_certificate", {
+        _name: name.trim() || "SPF Graduate",
+      });
+      const row = data?.[0];
+      if (err || !row) throw new Error(err?.message ?? "Could not issue certificate");
+      setCertId(row.cert_number);
+      const issued = new Date(row.issued_at).toLocaleDateString("en-GB", {
+        day: "numeric", month: "long", year: "numeric",
+      });
+      await downloadCertificatePdf({ name: row.graduate_name, date: issued, certId: row.cert_number });
+    } catch (e) {
+      setError(e instanceof Error ? e.message : "Something went wrong");
+    } finally {
+      setBusy(false);
+    }
+  };
+
   return (
     <section className="mt-10 overflow-hidden rounded-2xl border border-gold/30 bg-surface">
       <div className="border-b border-gold/20 bg-gold/8 px-6 py-3">
@@ -77,14 +98,24 @@ export function Certificate({ unlocked, signedIn, defaultName, userSeed }: Props
                   className="mt-1.5 w-full rounded-xl border border-border bg-surface-raised px-4 py-3 text-[15px] text-foreground outline-none transition-colors placeholder:text-muted-foreground/50 focus:border-gold/50"
                 />
               </label>
-              <button
-                onClick={() => void download()}
-                disabled={busy}
-                className="cta-gold inline-flex items-center justify-center gap-2 rounded-xl px-6 py-3 text-[15px] font-semibold disabled:opacity-50"
-              >
-                <Download className="size-4" />
-                {busy ? "Preparing…" : "Download certificate"}
-              </button>
+              <div className="flex flex-col gap-3 sm:flex-row">
+                <button
+                  onClick={() => void download()}
+                  disabled={busy}
+                  className="cta-gold inline-flex flex-1 items-center justify-center gap-2 rounded-xl px-6 py-3 text-[15px] font-semibold disabled:opacity-50"
+                >
+                  <Download className="size-4" />
+                  {busy ? "Preparing…" : "Download PNG"}
+                </button>
+                <button
+                  onClick={() => void downloadPdf()}
+                  disabled={busy}
+                  className="inline-flex flex-1 items-center justify-center gap-2 rounded-xl border border-gold/40 bg-transparent px-6 py-3 text-[15px] font-semibold text-gold transition-colors hover:bg-gold/10 disabled:opacity-50"
+                >
+                  <FileDown className="size-4" />
+                  {busy ? "Preparing…" : "Download PDF"}
+                </button>
+              </div>
             </div>
 
             <p className="mt-4 font-mono text-[11px] text-muted-foreground">
