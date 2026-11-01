@@ -189,3 +189,43 @@ export async function downloadCertificate(opts: {
   a.href = canvas.toDataURL("image/png");
   a.click();
 }
+
+/** Renders the certificate canvas and builds a print-ready A4 landscape PDF (QR + details preserved). */
+export async function certificatePdfBlob(opts: {
+  name: string;
+  date: string;
+  certId: string;
+}): Promise<Blob> {
+  const canvas = document.createElement("canvas");
+  await renderCertificate(canvas, opts);
+  const pngBlob = await new Promise<Blob>((resolve, reject) =>
+    canvas.toBlob((b) => (b ? resolve(b) : reject(new Error("Could not render certificate"))), "image/png"),
+  );
+  const pngBytes = new Uint8Array(await pngBlob.arrayBuffer());
+  const { PDFDocument } = await import("pdf-lib");
+  const pdf = await PDFDocument.create();
+  pdf.setTitle(`SPF Markets Graduation Certificate ${opts.certId}`);
+  pdf.setAuthor("SPF Markets Forex Academy");
+  pdf.setSubject(`Certificate of Graduation — ${opts.name}`);
+  const page = pdf.addPage([842, 595]); // A4 landscape (points)
+  const img = await pdf.embedPng(pngBytes);
+  page.drawImage(img, { x: 0, y: 0, width: 842, height: 595 });
+  const bytes = await pdf.save();
+  return new Blob([bytes as unknown as BlobPart], { type: "application/pdf" });
+}
+
+export async function downloadCertificatePdf(opts: {
+  name: string;
+  date: string;
+  certId: string;
+}): Promise<void> {
+  const blob = await certificatePdfBlob(opts);
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = `SPF-Markets-Graduation-Certificate-${opts.certId}.pdf`;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 30_000);
+}
