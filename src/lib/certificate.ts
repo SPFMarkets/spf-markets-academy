@@ -1,3 +1,4 @@
+import QRCode from "qrcode";
 import logoUrl from "@/assets/spf-logo.png";
 
 const NAVY = "#0d1526";
@@ -129,25 +130,51 @@ export async function renderCertificate(
     812,
   );
 
+  // verification QR (links to /verify?cert=NUMBER)
+  const QR_SIZE = 132;
+  const qrX = W - 78 - QR_SIZE;
+  const qrY = H - 224;
+  try {
+    const verifyUrl = `${window.location.origin}/verify?cert=${encodeURIComponent(opts.certId)}`;
+    const qrData = await QRCode.toDataURL(verifyUrl, {
+      margin: 2,
+      width: QR_SIZE * 3,
+      color: { dark: NAVY, light: GOLD_SOFT },
+      errorCorrectionLevel: "M",
+    });
+    const qr = await loadImage(qrData);
+    ctx.drawImage(qr, qrX, qrY, QR_SIZE, QR_SIZE);
+
+    ctx.strokeStyle = GOLD;
+    ctx.lineWidth = 1.5;
+    ctx.strokeRect(qrX - 6, qrY - 6, QR_SIZE + 12, QR_SIZE + 12);
+
+    ctx.fillStyle = GOLD;
+    ctx.font = "500 13px 'JetBrains Mono', monospace";
+    ctx.fillText("SCAN TO VERIFY", qrX + QR_SIZE / 2, qrY + QR_SIZE + 26);
+  } catch {
+    /* QR optional */
+  }
+
   // footer: date + certificate id
   ctx.font = "500 17px 'JetBrains Mono', monospace";
   ctx.fillStyle = GOLD;
-  ctx.fillText(opts.date, W / 2 - 320, 960);
-  ctx.fillText(`Certificate No. ${opts.certId}`, W / 2 + 320, 960);
+  ctx.fillText(opts.date, W / 2 - 380, 960);
+  ctx.fillText(`Certificate No. ${opts.certId}`, W / 2 + 240, 960);
 
   ctx.strokeStyle = "rgba(212,175,55,0.4)";
   ctx.lineWidth = 1;
   ctx.beginPath();
-  ctx.moveTo(W / 2 - 420, 930);
-  ctx.lineTo(W / 2 - 220, 930);
-  ctx.moveTo(W / 2 + 220, 930);
-  ctx.lineTo(W / 2 + 420, 930);
+  ctx.moveTo(W / 2 - 480, 930);
+  ctx.lineTo(W / 2 - 280, 930);
+  ctx.moveTo(W / 2 + 140, 930);
+  ctx.lineTo(W / 2 + 340, 930);
   ctx.stroke();
 
   ctx.fillStyle = MUTED;
   ctx.font = "400 14px 'Inter', sans-serif";
-  ctx.fillText("Date of Graduation", W / 2 - 320, 990);
-  ctx.fillText("spfmarkets.academy", W / 2 + 320, 990);
+  ctx.fillText("Date of Graduation", W / 2 - 380, 990);
+  ctx.fillText("Verify online anytime", W / 2 + 240, 990);
 }
 
 export async function downloadCertificate(opts: {
