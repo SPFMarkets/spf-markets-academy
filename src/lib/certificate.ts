@@ -132,8 +132,8 @@ export async function renderCertificate(
 
   // verification QR (links to /verify?cert=NUMBER)
   const QR_SIZE = 132;
-  const qrX = W - 56 - QR_SIZE;
-  const qrY = H - 220;
+  const qrX = W - 78 - QR_SIZE;
+  const qrY = H - 224;
   try {
     const verifyUrl = `${window.location.origin}/verify?cert=${encodeURIComponent(opts.certId)}`;
     const qrData = await QRCode.toDataURL(verifyUrl, {
