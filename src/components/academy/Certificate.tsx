@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { Award, Download, Lock } from "lucide-react";
-import { downloadCertificate } from "@/lib/certificate";
+import { downloadCertificate, downloadCertificatePdf } from "@/lib/certificate";
 import { supabase } from "@/integrations/supabase/client";
 
 type Props = {
@@ -38,6 +38,27 @@ export function Certificate({ unlocked, signedIn, defaultName, userSeed }: Props
         day: "numeric", month: "long", year: "numeric",
       });
       await downloadCertificate({ name: row.graduate_name, date: issued, certId: row.cert_number });
+    } catch (e) {
+      setError(e instanceof Error ? e.message : "Something went wrong");
+    } finally {
+      setBusy(false);
+    }
+  };
+
+  const downloadPdf = async () => {
+    setBusy(true);
+    setError(null);
+    try {
+      const { data, error: err } = await supabase.rpc("issue_certificate", {
+        _name: name.trim() || "SPF Graduate",
+      });
+      const row = data?.[0];
+      if (err || !row) throw new Error(err?.message ?? "Could not issue certificate");
+      setCertId(row.cert_number);
+      const issued = new Date(row.issued_at).toLocaleDateString("en-GB", {
+        day: "numeric", month: "long", year: "numeric",
+      });
+      await downloadCertificatePdf({ name: row.graduate_name, date: issued, certId: row.cert_number });
     } catch (e) {
       setError(e instanceof Error ? e.message : "Something went wrong");
     } finally {
