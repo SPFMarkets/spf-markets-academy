@@ -21,3 +21,4 @@
 - [x] Downloadable graduation certificate (PNG) unlocked after all 50 lessons + capstone — verified rendering & locked state
 - [x] Scannable QR code on the certificate linking to /verify with the certificate number pre-filled — decode-tested
 - [x] PDF download option for the graduation certificate (A4 landscape, QR + details preserved) — generated in-browser, QA-rendered & QR decode-tested
+- [x] Academic transcript PDF (full or partial progress: per-lesson quiz scores, dates, averages, exam results) on the certificate card — QA-rendered full & partial, 2 pages
