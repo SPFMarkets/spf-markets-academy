@@ -136,6 +136,7 @@ export async function buildTranscriptPdf(opts: TranscriptOptions): Promise<Blob>
     sx += w + 18;
   }
   y -= 20;
+  pages[pages.length - 1].y = y;
 
   // ---------- per-school sections ----------
   for (const mod of curriculum) {
