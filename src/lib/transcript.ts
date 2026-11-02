@@ -158,9 +158,9 @@ export async function buildTranscriptPdf(opts: TranscriptOptions): Promise<Blob>
       y = pages[pages.length - 1].y;
       const c = completions.get(lesson.id);
       const title = lesson.title.length > 64 ? `${lesson.title.slice(0, 63)}…` : lesson.title;
-      const isExam = lesson.id === capstoneId;
+      const isExam = /exam/.test(lesson.id);
       if (c) {
-        page.drawText(isExam ? `${title} — FINAL EXAMINATION` : title, {
+        page.drawText(title, {
           x: M, y, size: 10, font: isExam ? helvBold : helv, color: col(TEXT),
         });
         const when = fmtDate(c.completed_at);
