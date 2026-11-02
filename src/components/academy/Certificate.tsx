@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { Link } from "@tanstack/react-router";
-import { Award, Download, FileDown, Lock } from "lucide-react";
+import { Award, Download, FileDown, FileText, Lock } from "lucide-react";
 import { downloadCertificate, downloadCertificatePdf } from "@/lib/certificate";
+import { downloadTranscriptPdf } from "@/lib/transcript";
 import { supabase } from "@/integrations/supabase/client";
 
 type Props = {
