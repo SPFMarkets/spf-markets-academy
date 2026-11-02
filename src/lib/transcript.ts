@@ -76,7 +76,7 @@ export async function buildTranscriptPdf(opts: TranscriptOptions): Promise<Blob>
   };
 
   const ensure = (needed: number): void => {
-    if (pages[pages.length - 1].y - needed < M + 24) newPage();
+    if (cur().y - needed < M + 24) newPage();
   };
 
   // ---------- header band ----------
@@ -136,12 +136,12 @@ export async function buildTranscriptPdf(opts: TranscriptOptions): Promise<Blob>
     sx += w + 18;
   }
   y -= 20;
-  pages[pages.length - 1].y = y;
+  cur().y = y;
 
   // ---------- per-school sections ----------
   for (const mod of curriculum) {
     ensure(30);
-    y = pages[pages.length - 1].y;
+    y = cur().y;
     page.drawText(mod.title.toUpperCase(), {
       x: M, y, size: 12, font: timesBold, color: col(NAVY),
     });
@@ -151,11 +151,11 @@ export async function buildTranscriptPdf(opts: TranscriptOptions): Promise<Blob>
       thickness: 0.75,
       color: col(GOLD),
     });
-    pages[pages.length - 1].y = y - 22;
+    cur().y = y - 22;
 
     for (const lesson of mod.lessons) {
       ensure(18);
-      y = pages[pages.length - 1].y;
+      y = cur().y;
       const c = completions.get(lesson.id);
       const title = lesson.title.length > 64 ? `${lesson.title.slice(0, 63)}…` : lesson.title;
       const isExam = /exam/.test(lesson.id);
@@ -178,9 +178,9 @@ export async function buildTranscriptPdf(opts: TranscriptOptions): Promise<Blob>
           x: rightX - helvOblique.widthOfTextAtSize(nc, 9), y: y + 0.5, size: 9, font: helvOblique, color: col(MUTED),
         });
       }
-      pages[pages.length - 1].y = y - 17;
+      cur().y = y - 17;
     }
-    pages[pages.length - 1].y -= 6;
+    cur().y -= 6;
   }
 
   // ---------- footers ----------
