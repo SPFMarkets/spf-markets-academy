@@ -40,7 +40,7 @@ export async function buildTranscriptPdf(opts: TranscriptOptions): Promise<Blob>
   pdf.setProducer("SPF Markets Forex Academy");
 
   const times = await pdf.embedFont(StandardFonts.TimesRoman);
-  const timesBold = await pdf.embedFont(StandardFonts.TimesBold);
+  const timesBold = await pdf.embedFont(StandardFonts.TimesRomanBold);
   const helv = await pdf.embedFont(StandardFonts.Helvetica);
   const helvBold = await pdf.embedFont(StandardFonts.HelveticaBold);
   const helvOblique = await pdf.embedFont(StandardFonts.HelveticaOblique);
