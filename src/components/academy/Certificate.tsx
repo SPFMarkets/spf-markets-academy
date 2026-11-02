@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { Link } from "@tanstack/react-router";
-import { Award, Download, FileDown, Lock } from "lucide-react";
+import { Award, Download, FileDown, FileText, Lock } from "lucide-react";
 import { downloadCertificate, downloadCertificatePdf } from "@/lib/certificate";
+import { downloadTranscriptPdf } from "@/lib/transcript";
 import { supabase } from "@/integrations/supabase/client";
 
 type Props = {
@@ -22,7 +23,7 @@ export function Certificate({ unlocked, signedIn, defaultName, userSeed }: Props
   });
   const [certId, setCertId] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
-  void userSeed;
+
 
   const download = async () => {
     setBusy(true);
@@ -59,6 +60,27 @@ export function Certificate({ unlocked, signedIn, defaultName, userSeed }: Props
         day: "numeric", month: "long", year: "numeric",
       });
       await downloadCertificatePdf({ name: row.graduate_name, date: issued, certId: row.cert_number });
+    } catch (e) {
+      setError(e instanceof Error ? e.message : "Something went wrong");
+    } finally {
+      setBusy(false);
+    }
+  };
+
+  const downloadTranscript = async () => {
+    setBusy(true);
+    setError(null);
+    try {
+      const { data, error: err } = await supabase
+        .from("quiz_completions")
+        .select("lesson_id, score, total, completed_at")
+        .eq("user_id", userSeed);
+      if (err) throw new Error(err.message);
+      await downloadTranscriptPdf({
+        name: name.trim() || defaultName || "SPF Graduate",
+        certNumber: certId,
+        completions: data ?? [],
+      });
     } catch (e) {
       setError(e instanceof Error ? e.message : "Something went wrong");
     } finally {
@@ -114,6 +136,14 @@ export function Certificate({ unlocked, signedIn, defaultName, userSeed }: Props
                 >
                   <FileDown className="size-4" />
                   {busy ? "Preparing…" : "Download PDF"}
+                </button>
+                <button
+                  onClick={() => void downloadTranscript()}
+                  disabled={busy}
+                  className="inline-flex flex-1 items-center justify-center gap-2 rounded-xl border border-border bg-surface-raised px-6 py-3 text-[15px] font-semibold text-foreground transition-colors hover:border-gold/40 disabled:opacity-50"
+                >
+                  <FileText className="size-4" />
+                  {busy ? "Preparing…" : "Download transcript"}
                 </button>
               </div>
             </div>
