@@ -65,7 +65,7 @@ export async function buildTranscriptPdf(opts: TranscriptOptions): Promise<Blob>
 
   const newPage = () => {
     page = pdf.addPage([W, H]);
-    pages.push({ page, y: 0 });
+    pages.push({ page, y: H - 64 });
     // thin gold rule at the top of continuation pages
     page.drawLine({
       start: { x: M, y: H - 44 },
@@ -73,11 +73,10 @@ export async function buildTranscriptPdf(opts: TranscriptOptions): Promise<Blob>
       thickness: 1,
       color: col(GOLD),
     });
-    return H - 64;
   };
 
   const ensure = (needed: number): void => {
-    if (pages[pages.length - 1].y - needed < M + 24) pages[pages.length - 1].y = newPage();
+    if (pages[pages.length - 1].y - needed < M + 24) newPage();
   };
 
   // ---------- header band ----------
