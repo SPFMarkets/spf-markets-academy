@@ -3063,3 +3063,4 @@ export const allLessons = curriculum.flatMap((m) =>
 );
 
 export const DERIV_AFFILIATE_URL = "https://t.deriv.link?t=YRL2VSHWS49A";
+export const TELEGRAM_CHANNEL_URL = "https://t.me/spfanalysis";

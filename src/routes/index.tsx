@@ -1,13 +1,14 @@
 import { useEffect, useMemo, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { BarChart3, Menu, Clock, ArrowLeft, ArrowRight, LogOut } from "lucide-react";
+import { BarChart3, Menu, Clock, ArrowLeft, ArrowRight, LogOut, Send } from "lucide-react";
 import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { Sidebar } from "@/components/academy/Sidebar";
 import { FormulaBlock } from "@/components/academy/FormulaBlock";
 import { DerivCta } from "@/components/academy/DerivCta";
+import { TelegramCta } from "@/components/academy/TelegramCta";
 import { Quiz } from "@/components/academy/Quiz";
 import { Certificate } from "@/components/academy/Certificate";
-import { allLessons } from "@/data/curriculum";
+import { allLessons, TELEGRAM_CHANNEL_URL } from "@/data/curriculum";
 import { supabase } from "@/integrations/supabase/client";
 import { useSession } from "@/hooks/useSession";
 
@@ -115,6 +116,15 @@ function Academy() {
           </div>
 
           <div className="ml-auto flex shrink-0 items-center gap-2">
+            <a
+              href={TELEGRAM_CHANNEL_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Join the SPF Analysis Telegram channel for daily updates"
+              className="rounded-full border border-border p-2 text-muted-foreground transition-colors hover:border-gold/50 hover:text-gold"
+            >
+              <Send className="size-3.5" />
+            </a>
             <span className="flex items-center gap-1.5 rounded-full border border-border px-3 py-1 font-mono text-[11px] text-muted-foreground">
               <Clock className="size-3" />
               {lesson.minutes} min
@@ -187,6 +197,8 @@ function Academy() {
           <DerivCta lessonTitle={lesson.title} />
 
           <Quiz lessonId={lesson.id} questions={lesson.quiz} onComplete={markComplete} />
+
+          <TelegramCta />
 
           {lesson.id === "final-capstone-exam" && (
             <Certificate
