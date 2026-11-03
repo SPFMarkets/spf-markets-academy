@@ -56,10 +56,12 @@ export async function buildTranscriptPdf(opts: TranscriptOptions): Promise<Blob>
   const avg = totalQ > 0 ? Math.round((totalS / totalQ) * 100) : 0;
   const completedCount = opts.completions.length;
   const lessonCount = curriculum.reduce((s, m) => s + m.lessons.length, 0);
-  const capstoneId = curriculum[curriculum.length - 1]?.lessons[curriculum[curriculum.length - 1].lessons.length - 1]?.id;
+  const lastMod = curriculum[curriculum.length - 1];
+  const capstoneId = lastMod ? lastMod.lessons[lastMod.lessons.length - 1]?.id : undefined;
   const capstone = capstoneId ? completions.get(capstoneId) : undefined;
 
   const pages: { page: ReturnType<typeof pdf.addPage>; y: number }[] = [];
+  const cur = (): { page: ReturnType<typeof pdf.addPage>; y: number } => pages[pages.length - 1]!;
   let page = pdf.addPage([W, H]);
   pages.push({ page, y: 0 });
 
