@@ -37,7 +37,7 @@ function AuthPage() {
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
-      if (session) navigate({ to: "/", replace: true });
+      if (session) navigate({ to: "/lessons", replace: true });
     });
   }, [navigate]);
 
@@ -58,11 +58,11 @@ function AuthPage() {
       });
       if (err) setError(err.message);
       else if (!data.session) setMessage("Check your inbox and confirm your email to finish signing up.");
-      else navigate({ to: "/", replace: true });
+      else navigate({ to: "/lessons", replace: true });
     } else {
       const { error: err } = await supabase.auth.signInWithPassword({ email, password });
       if (err) setError(err.message);
-      else navigate({ to: "/", replace: true });
+      else navigate({ to: "/lessons", replace: true });
     }
     setBusy(false);
   };
@@ -77,14 +77,14 @@ function AuthPage() {
       return;
     }
     if (result.redirected) return;
-    navigate({ to: "/", replace: true });
+    navigate({ to: "/lessons", replace: true });
   };
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-5 py-14">
       <div className="w-full max-w-[26rem]">
         <Link
-          to="/"
+          to="/lessons"
           className="mb-8 inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground transition-colors hover:text-gold"
         >
           <ArrowLeft className="size-3.5" />

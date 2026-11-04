@@ -68,7 +68,7 @@ function Dashboard() {
     <div className="min-h-screen bg-background">
       <div className="mx-auto max-w-3xl px-6 py-12 sm:px-10 lg:py-16">
         <Link
-          to="/"
+          to="/lessons"
           className="inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground transition-colors hover:text-gold"
         >
           <ArrowLeft className="size-3.5" />
