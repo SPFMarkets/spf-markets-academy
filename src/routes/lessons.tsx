@@ -9,24 +9,27 @@ import { TelegramCta } from "@/components/academy/TelegramCta";
 import { Quiz } from "@/components/academy/Quiz";
 import { Certificate } from "@/components/academy/Certificate";
 import { allLessons, TELEGRAM_CHANNEL_URL } from "@/data/curriculum";
+import logo from "@/assets/spf-logo.png";
 import { supabase } from "@/integrations/supabase/client";
 import { useSession } from "@/hooks/useSession";
 
 export const Route = createFileRoute("/lessons")({
   head: () => ({
     meta: [
-      { title: "SPF Markets — Forex Academy for Serious Traders" },
+      { title: "Forex Lessons — SPF Markets Academy" },
       {
         name: "description",
         content:
-          "Learn forex from Pre-School to High School with SPF Markets: clear lessons, worked pip and risk formulas, and quizzes that track your progress.",
+          "The full SPF Markets forex curriculum: 50 lessons from Pre-School to Graduate School with worked pip and risk formulas and interactive quizzes.",
       },
-      { property: "og:title", content: "SPF Markets — Forex Academy for Serious Traders" },
+      { property: "og:title", content: "Forex Lessons — SPF Markets Academy" },
       {
         property: "og:description",
         content:
-          "Structured forex curriculum with worked formulas, risk management lessons and interactive quizzes.",
+          "50 structured forex lessons with worked formulas, risk management and interactive quizzes.",
       },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: Academy,
@@ -108,6 +111,14 @@ function Academy() {
               <Sidebar {...sidebarProps} collapsed={false} onToggleCollapsed={() => setMobileOpen(false)} />
             </SheetContent>
           </Sheet>
+
+          <Link
+            to="/"
+            aria-label="Back to the SPF Markets homepage"
+            className="hidden shrink-0 sm:block"
+          >
+            <img src={logo} alt="SPF Markets homepage" className="size-9 object-contain" />
+          </Link>
 
           <div className="flex min-w-0 items-center gap-2 font-mono text-[11px] uppercase tracking-[0.16em] text-muted-foreground">
             <span className="truncate">{lesson.moduleTitle}</span>
