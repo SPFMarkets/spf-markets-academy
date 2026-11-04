@@ -10,7 +10,7 @@
 <!-- LOVABLE:END -->
 
 <!-- LOVABLE:BEGIN (project rules) -->
-- Routing: the lessons page is public at `/`; `/dashboard` gates itself with its own `beforeLoad` auth check. Do not reintroduce a `_authenticated` pathless layout route claiming `/` — it conflicts with `src/routes/index.tsx` and breaks the router.
+- Routing: the marketing homepage is at `/` (src/routes/index.tsx); the lessons page is public at `/lessons`; `/dashboard` gates itself with its own `beforeLoad` auth check. Do not reintroduce a pathless layout route claiming `/` or `/lessons` — it conflicts with `src/routes/index.tsx` and breaks the router.
 - Quiz scores are saved by upserting `quiz_completions` with `onConflict: "user_id,lesson_id"` (unique index exists in the database).
 - `lesson_stats()` returns columns `lesson_id, completions, avg_score`; only admins get rows (admin check inside the function).
 <!-- LOVABLE:END -->

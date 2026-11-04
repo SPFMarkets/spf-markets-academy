@@ -1,0 +1,253 @@
+import { useEffect, useMemo, useState } from "react";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { BarChart3, Menu, Clock, ArrowLeft, ArrowRight, LogOut, Send } from "lucide-react";
+import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
+import { Sidebar } from "@/components/academy/Sidebar";
+import { FormulaBlock } from "@/components/academy/FormulaBlock";
+import { DerivCta } from "@/components/academy/DerivCta";
+import { TelegramCta } from "@/components/academy/TelegramCta";
+import { Quiz } from "@/components/academy/Quiz";
+import { Certificate } from "@/components/academy/Certificate";
+import { allLessons, TELEGRAM_CHANNEL_URL } from "@/data/curriculum";
+import logo from "@/assets/spf-logo.png";
+import { supabase } from "@/integrations/supabase/client";
+import { useSession } from "@/hooks/useSession";
+
+export const Route = createFileRoute("/lessons")({
+  head: () => ({
+    meta: [
+      { title: "Forex Lessons — SPF Markets Academy" },
+      {
+        name: "description",
+        content:
+          "The full SPF Markets forex curriculum: 50 lessons from Pre-School to Graduate School with worked pip and risk formulas and interactive quizzes.",
+      },
+      { property: "og:title", content: "Forex Lessons — SPF Markets Academy" },
+      {
+        property: "og:description",
+        content:
+          "50 structured forex lessons with worked formulas, risk management and interactive quizzes.",
+      },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+  }),
+  component: Academy,
+});
+
+function Academy() {
+  const [activeId, setActiveId] = useState(allLessons[0]!.id);
+  const [completed, setCompleted] = useState<string[]>([]);
+  const [collapsed, setCollapsed] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const { loading: sessionLoading, user } = useSession();
+
+  useEffect(() => {
+    if (!user) {
+      setCompleted([]);
+      return;
+    }
+    void supabase
+      .from("quiz_completions")
+      .select("lesson_id")
+      .eq("user_id", user.id)
+      .then(({ data }) => {
+        if (data) setCompleted(data.map((row) => row.lesson_id));
+      });
+  }, [user]);
+
+  const found = useMemo(() => allLessons.findIndex((l) => l.id === activeId), [activeId]);
+  const index = found < 0 ? 0 : found;
+  const lesson = allLessons[index]!;
+  const prev = allLessons[index - 1];
+  const next = allLessons[index + 1];
+
+  const select = (id: string) => {
+    setActiveId(id);
+    setMobileOpen(false);
+    if (typeof window !== "undefined") window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  const markComplete = (id: string, score: number, total: number) => {
+    setCompleted((prevIds) => (prevIds.includes(id) ? prevIds : [...prevIds, id]));
+    if (!user) return;
+    void supabase
+      .from("quiz_completions")
+      .upsert(
+        { user_id: user.id, lesson_id: id, score, total },
+        { onConflict: "user_id,lesson_id" },
+      );
+  };
+
+  const sidebarProps = {
+    activeLessonId: activeId,
+    completed,
+    onSelect: select,
+  };
+
+  return (
+    <div className="flex min-h-screen bg-background">
+      <div className="hidden lg:block">
+        <Sidebar
+          {...sidebarProps}
+          collapsed={collapsed}
+          onToggleCollapsed={() => setCollapsed((c) => !c)}
+        />
+      </div>
+
+      <main className="min-w-0 flex-1">
+        <header className="sticky top-0 z-20 flex items-center gap-3 border-b border-border bg-background/85 px-5 py-3.5 backdrop-blur-xl lg:px-10">
+          <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
+            <SheetTrigger asChild>
+              <button
+                aria-label="Open course syllabus"
+                className="rounded-lg border border-border p-2 text-muted-foreground transition-colors hover:text-gold lg:hidden"
+              >
+                <Menu className="size-4" />
+              </button>
+            </SheetTrigger>
+            <SheetContent side="left" className="w-[300px] border-sidebar-border bg-sidebar p-0">
+              <SheetTitle className="sr-only">Course syllabus</SheetTitle>
+              <Sidebar {...sidebarProps} collapsed={false} onToggleCollapsed={() => setMobileOpen(false)} />
+            </SheetContent>
+          </Sheet>
+
+          <Link
+            to="/"
+            aria-label="Back to the SPF Markets homepage"
+            className="hidden shrink-0 sm:block"
+          >
+            <img src={logo} alt="SPF Markets homepage" className="size-9 object-contain" />
+          </Link>
+
+          <div className="flex min-w-0 items-center gap-2 font-mono text-[11px] uppercase tracking-[0.16em] text-muted-foreground">
+            <span className="truncate">{lesson.moduleTitle}</span>
+            <span className="text-gold">/</span>
+            <span className="truncate text-foreground">Lesson {index + 1}</span>
+          </div>
+
+          <div className="ml-auto flex shrink-0 items-center gap-2">
+            <a
+              href={TELEGRAM_CHANNEL_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Join the SPF Analysis Telegram channel for daily updates"
+              className="rounded-full border border-border p-2 text-muted-foreground transition-colors hover:border-gold/50 hover:text-gold"
+            >
+              <Send className="size-3.5" />
+            </a>
+            <span className="flex items-center gap-1.5 rounded-full border border-border px-3 py-1 font-mono text-[11px] text-muted-foreground">
+              <Clock className="size-3" />
+              {lesson.minutes} min
+            </span>
+            {sessionLoading ? null : user ? (
+              <>
+                <Link
+                  to="/dashboard"
+                  aria-label="Lesson completion dashboard"
+                  className="rounded-full border border-border p-2 text-muted-foreground transition-colors hover:border-gold/50 hover:text-gold"
+                >
+                  <BarChart3 className="size-3.5" />
+                </Link>
+                <span className="hidden max-w-[160px] truncate rounded-full border border-border px-3 py-1 text-[12px] text-foreground sm:block">
+                  {user.email?.split("@")[0]}
+                </span>
+                <button
+                  onClick={() => void supabase.auth.signOut()}
+                  aria-label="Sign out"
+                  className="rounded-full border border-border p-2 text-muted-foreground transition-colors hover:border-destructive/50 hover:text-destructive"
+                >
+                  <LogOut className="size-3.5" />
+                </button>
+              </>
+            ) : (
+              <Link to="/auth" className="cta-gold rounded-full px-4 py-1.5 text-[12px] font-semibold">
+                Sign in
+              </Link>
+            )}
+          </div>
+        </header>
+
+        <article className="mx-auto max-w-[72ch] px-6 py-12 sm:px-10 lg:px-12 lg:py-16">
+          <h1 className="text-balance font-display text-[2.25rem] font-semibold leading-[1.08] text-foreground sm:text-[2.75rem]">
+            {lesson.title}
+          </h1>
+          <p className="mt-5 max-w-[56ch] text-pretty text-[18px] leading-relaxed text-gold-soft/85">
+            {lesson.summary}
+          </p>
+
+          <div className="lesson-prose mt-8">
+            {lesson.blocks.map((block, i) => {
+              if (block.type === "p") return <p key={i}>{block.text}</p>;
+              if (block.type === "h2") return <h2 key={i}>{block.text}</h2>;
+              if (block.type === "list")
+                return (
+                  <ul key={i}>
+                    {block.items.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                );
+              if (block.type === "callout")
+                return (
+                  <aside
+                    key={i}
+                    className="my-8 rounded-xl border-l-2 border-gold bg-surface px-5 py-4"
+                  >
+                    <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-gold">
+                      {block.title}
+                    </p>
+                    <p className="mt-2 text-[15px] leading-relaxed text-foreground">{block.text}</p>
+                  </aside>
+                );
+              const { type: _type, ...formula } = block;
+              return <FormulaBlock key={i} {...formula} />;
+            })}
+          </div>
+
+          <DerivCta lessonTitle={lesson.title} />
+
+          <Quiz lessonId={lesson.id} questions={lesson.quiz} onComplete={markComplete} />
+
+          <TelegramCta />
+
+          {lesson.id === "final-capstone-exam" && (
+            <Certificate
+              unlocked={completed.length >= allLessons.length}
+              signedIn={!!user}
+              defaultName={
+                (user?.user_metadata?.["display_name"] as string | undefined) ??
+                user?.email?.split("@")[0] ??
+                ""
+              }
+              userSeed={user?.id ?? ""}
+            />
+          )}
+
+          <nav className="mt-12 flex items-center justify-between gap-4 border-t border-border pt-6 text-[13px]">
+            {prev ? (
+              <button
+                onClick={() => select(prev.id)}
+                className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-gold"
+              >
+                <ArrowLeft className="size-4" />
+                <span className="truncate">{prev.title}</span>
+              </button>
+            ) : (
+              <span />
+            )}
+            {next && (
+              <button
+                onClick={() => select(next.id)}
+                className="flex items-center gap-2 text-right font-medium text-foreground transition-colors hover:text-gold"
+              >
+                <span className="truncate">{next.title}</span>
+                <ArrowRight className="size-4" />
+              </button>
+            )}
+          </nav>
+        </article>
+      </main>
+    </div>
+  );
+}
