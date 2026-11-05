@@ -13,7 +13,7 @@ export const Route = createFileRoute("/auth")({
       {
         name: "description",
         content:
-          "Sign in to SPF Markets Academy to save your quiz results and track your progress through the forex curriculum.",
+          "Register with your email to access the full SPF Markets forex curriculum, save your quiz results and track your progress.",
       },
       { property: "og:title", content: "Student Sign In — SPF Markets Academy" },
       {
