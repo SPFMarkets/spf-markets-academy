@@ -22,4 +22,6 @@
 - [x] Scannable QR code on the certificate linking to /verify with the certificate number pre-filled — decode-tested
 - [x] PDF download option for the graduation certificate (A4 landscape, QR + details preserved) — generated in-browser, QA-rendered & QR decode-tested
 - [x] Academic transcript PDF (full or partial progress: per-lesson quiz scores, dates, averages, exam results) on the certificate card — QA-rendered full & partial, 2 pages
-- [x] Marketing homepage at `/` (hero, curriculum, features, broker CTA, Telegram) — lessons moved to public `/lessons`, all cross-links updated
+- [x] Marketing homepage at `/` (hero, curriculum, features, broker CTA, Telegram) — all cross-links updated
+- [x] Email gate: /lessons requires a registered student account; signup collects the student's full name
+- [x] Locked names: registered display names can never be changed (database-enforced) and appear on transcript + certificate (read-only)

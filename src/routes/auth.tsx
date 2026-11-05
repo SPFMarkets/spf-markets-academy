@@ -13,7 +13,7 @@ export const Route = createFileRoute("/auth")({
       {
         name: "description",
         content:
-          "Sign in to SPF Markets Academy to save your quiz results and track your progress through the forex curriculum.",
+          "Register with your email to access the full SPF Markets forex curriculum, save your quiz results and track your progress.",
       },
       { property: "og:title", content: "Student Sign In — SPF Markets Academy" },
       {
@@ -53,7 +53,7 @@ function AuthPage() {
         password,
         options: {
           emailRedirectTo: window.location.origin,
-          data: { display_name: name || email.split("@")[0] },
+          data: { display_name: name.trim() || email.split("@")[0] },
         },
       });
       if (err) setError(err.message);
@@ -111,12 +111,22 @@ function AuthPage() {
 
           <form onSubmit={submit} className="mt-7 space-y-3.5">
             {mode === "signup" && (
-              <input
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                placeholder="Display name"
-                className="w-full rounded-xl border border-border bg-surface-raised px-4 py-3 text-[15px] text-foreground placeholder:text-muted-foreground focus:border-gold/60 focus:outline-none"
-              />
+              <>
+                <input
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  placeholder="Full name"
+                  required
+                  minLength={2}
+                  maxLength={80}
+                  autoComplete="name"
+                  className="w-full rounded-xl border border-border bg-surface-raised px-4 py-3 text-[15px] text-foreground placeholder:text-muted-foreground focus:border-gold/60 focus:outline-none"
+                />
+                <p className="text-[12px] leading-relaxed text-muted-foreground">
+                  This name appears on your transcript and graduation certificate and cannot be
+                  changed after you register.
+                </p>
+              </>
             )}
             <input
               type="email"

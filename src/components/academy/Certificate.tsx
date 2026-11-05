@@ -13,8 +13,8 @@ type Props = {
 };
 
 export function Certificate({ unlocked, signedIn, defaultName, userSeed }: Props) {
-  const [name, setName] = useState(defaultName);
   const [busy, setBusy] = useState(false);
+  const name = defaultName;
 
   const date = new Date().toLocaleDateString("en-GB", {
     day: "numeric",
@@ -104,22 +104,23 @@ export function Certificate({ unlocked, signedIn, defaultName, userSeed }: Props
               Congratulations, graduate.
             </p>
             <p className="mt-2 max-w-[52ch] text-[15px] leading-relaxed text-muted-foreground">
-              You have completed all five schools and passed the Final Capstone Examination.
-              Enter your name as it should appear, then download your certificate.
+              You have completed all five schools and passed the Final Capstone Examination. Your
+              registered name appears on your certificate and transcript exactly as you entered it
+              when you enrolled.
             </p>
 
             <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-end">
-              <label className="flex-1">
+              <div className="flex-1">
                 <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
                   Name on certificate
                 </span>
-                <input
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  placeholder="Your full name"
-                  className="mt-1.5 w-full rounded-xl border border-border bg-surface-raised px-4 py-3 text-[15px] text-foreground outline-none transition-colors placeholder:text-muted-foreground/50 focus:border-gold/50"
-                />
-              </label>
+                <p className="mt-1.5 w-full truncate rounded-xl border border-border bg-surface-raised px-4 py-3 text-[15px] font-medium text-foreground">
+                  {name || "SPF Graduate"}
+                </p>
+                <p className="mt-1.5 font-mono text-[10px] uppercase tracking-[0.14em] text-muted-foreground">
+                  Set at registration · cannot be changed
+                </p>
+              </div>
               <div className="flex flex-col gap-3 sm:flex-row">
                 <button
                   onClick={() => void download()}
