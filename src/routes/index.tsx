@@ -147,7 +147,7 @@ function HomePage() {
                 to="/lessons"
                 className="cta-gold inline-flex items-center gap-2.5 rounded-xl px-7 py-4 font-display text-[15px] font-semibold"
               >
-                Start Lesson 1 — Free
+                Enrol Free
                 <ArrowRight className="size-4" />
               </Link>
               <a
@@ -337,7 +337,7 @@ function HomePage() {
             to="/lessons"
             className="cta-gold mt-8 inline-flex items-center gap-2.5 rounded-xl px-8 py-4 font-display text-[15px] font-semibold"
           >
-            Start Lesson 1 — Free
+            Enrol Free
             <ArrowRight className="size-4" />
           </Link>
         </div>
