@@ -76,7 +76,7 @@ const features = [
 const steps = [
   {
     title: "Enrol free",
-    text: "No payment, no card. Open lesson one and start reading — or create a student account to save progress.",
+    text: "Create your student account with your email and full name — the name you register goes on your transcript and graduation certificate.",
   },
   {
     title: "Learn & practise",

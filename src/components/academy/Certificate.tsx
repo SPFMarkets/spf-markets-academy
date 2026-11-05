@@ -13,8 +13,8 @@ type Props = {
 };
 
 export function Certificate({ unlocked, signedIn, defaultName, userSeed }: Props) {
-  const [name, setName] = useState(defaultName);
   const [busy, setBusy] = useState(false);
+  const name = defaultName;
 
   const date = new Date().toLocaleDateString("en-GB", {
     day: "numeric",
