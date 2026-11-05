@@ -53,7 +53,7 @@ function AuthPage() {
         password,
         options: {
           emailRedirectTo: window.location.origin,
-          data: { display_name: name || email.split("@")[0] },
+          data: { display_name: name.trim() || email.split("@")[0] },
         },
       });
       if (err) setError(err.message);
