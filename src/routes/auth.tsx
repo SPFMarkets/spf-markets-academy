@@ -111,12 +111,22 @@ function AuthPage() {
 
           <form onSubmit={submit} className="mt-7 space-y-3.5">
             {mode === "signup" && (
-              <input
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                placeholder="Display name"
-                className="w-full rounded-xl border border-border bg-surface-raised px-4 py-3 text-[15px] text-foreground placeholder:text-muted-foreground focus:border-gold/60 focus:outline-none"
-              />
+              <>
+                <input
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  placeholder="Full name"
+                  required
+                  minLength={2}
+                  maxLength={80}
+                  autoComplete="name"
+                  className="w-full rounded-xl border border-border bg-surface-raised px-4 py-3 text-[15px] text-foreground placeholder:text-muted-foreground focus:border-gold/60 focus:outline-none"
+                />
+                <p className="text-[12px] leading-relaxed text-muted-foreground">
+                  This name appears on your transcript and graduation certificate and cannot be
+                  changed after you register.
+                </p>
+              </>
             )}
             <input
               type="email"

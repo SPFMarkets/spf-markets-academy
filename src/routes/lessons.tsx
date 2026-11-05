@@ -14,6 +14,12 @@ import { supabase } from "@/integrations/supabase/client";
 import { useSession } from "@/hooks/useSession";
 
 export const Route = createFileRoute("/lessons")({
+  ssr: false,
+  beforeLoad: async () => {
+    // Classes are for registered students only: every visitor must sign in first.
+    const { data } = await supabase.auth.getUser();
+    if (!data.user) throw redirect({ to: "/auth" });
+  },
   head: () => ({
     meta: [
       { title: "Forex Lessons — SPF Markets Academy" },
