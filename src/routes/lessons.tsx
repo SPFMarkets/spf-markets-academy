@@ -46,11 +46,13 @@ function Academy() {
   const [completed, setCompleted] = useState<string[]>([]);
   const [collapsed, setCollapsed] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [registeredName, setRegisteredName] = useState<string | null>(null);
   const { loading: sessionLoading, user } = useSession();
 
   useEffect(() => {
     if (!user) {
       setCompleted([]);
+      setRegisteredName(null);
       return;
     }
     void supabase
@@ -59,6 +61,16 @@ function Academy() {
       .eq("user_id", user.id)
       .then(({ data }) => {
         if (data) setCompleted(data.map((row) => row.lesson_id));
+      });
+    // The locked display name lives in profiles; it is what appears on
+    // certificates and transcripts.
+    void supabase
+      .from("profiles")
+      .select("display_name")
+      .eq("id", user.id)
+      .single()
+      .then(({ data }) => {
+        if (data?.display_name) setRegisteredName(data.display_name);
       });
   }, [user]);
 
