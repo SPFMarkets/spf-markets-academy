@@ -110,7 +110,7 @@ export function Certificate({ unlocked, signedIn, defaultName, userSeed }: Props
             </p>
 
             <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-end">
-              <div className="flex-1">
+              <div className="min-w-[220px] flex-1">
                 <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
                   Name on certificate
                 </span>
